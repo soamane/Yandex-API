@@ -1,9 +1,9 @@
 #include "YandexAPI.hpp"
 
-YandexAPI::YandexAPI(const std::string& key) : api_key(key) { }
+YandexAPI::YandexAPI(const std::string& key) : m_key(key) { }
 
 std::string YandexAPI::GetVerifyHeader() {
-    return std::string(api_header + api_key);
+    return std::string(m_header + m_key);
 }
 
 std::string YandexAPI::SetCoordToString(double latitude, double longitude) {

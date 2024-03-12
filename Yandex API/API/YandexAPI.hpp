@@ -9,15 +9,20 @@ class YandexAPI
 public:
 	YandexAPI(const std::string& key);
 
-
-
 private:
 	std::string GetVerifyHeader();
 	std::string SetCoordToString(double latitude, double longitude);
 
 private:
-	std::string api_key = { };
-	const std::string api_header = "X-Yandex-API-Key: ";
+
+	const std::string m_key = { };
+	const std::string m_header = "X-Yandex-API-Key: ";
+
+	struct URL
+	{
+		static const inline std::string fact = "https://api.weather.yandex.ru/v2/fact?";
+		static const inline std::string forecast = "https://api.weather.yandex.ru/v2/forecast?";
+	};
 };
 
 #endif // !YANDEXAPI_HPP
