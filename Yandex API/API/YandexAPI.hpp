@@ -9,8 +9,11 @@ class YandexAPI
 public:
 	YandexAPI(const std::string& key);
 
-protected:
+
+
+private:
 	std::string GetVerifyHeader();
+	std::string SetCoordToString(double latitude, double longitude);
 
 private:
 	std::string api_key = { };
