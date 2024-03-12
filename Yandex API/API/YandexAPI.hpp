@@ -9,6 +9,9 @@ class YandexAPI
 public:
 	YandexAPI(const std::string& key);
 
+protected:
+	std::string GetVerifyHeader();
+
 private:
 	std::string api_key = { };
 	const std::string api_header = "X-Yandex-API-Key: ";
