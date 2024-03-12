@@ -2,13 +2,15 @@
 #ifndef YANDEXAPI_HPP
 #define YANDEXAPI_HPP
 
-#include <string_view>
 #include <format>
+
+#include <string>
+#include <string_view>
 
 class YandexAPI
 {
 public:
-	YandexAPI(const std::string& key);
+	YandexAPI(std::string_view key);
 
 private:
 	std::string GetVerifyHeader();
