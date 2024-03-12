@@ -2,7 +2,8 @@
 #ifndef YANDEXAPI_HPP
 #define YANDEXAPI_HPP
 
-#include <string>
+#include <string_view>
+#include <format>
 
 class YandexAPI
 {
@@ -15,13 +16,13 @@ private:
 
 private:
 
-	const std::string m_key = { };
-	const std::string m_header = "X-Yandex-API-Key: ";
+	const std::string_view m_key;
+	const std::string_view m_header = "X-Yandex-API-Key: ";
 
-	struct URL
+	struct APIUrls
 	{
-		static const inline std::string fact = "https://api.weather.yandex.ru/v2/fact?";
-		static const inline std::string forecast = "https://api.weather.yandex.ru/v2/forecast?";
+		static constexpr std::string_view m_fact = "https://api.weather.yandex.ru/v2/fact?";
+		static constexpr std::string_view m_forecast = "https://api.weather.yandex.ru/v2/forecast?";
 	};
 };
 
