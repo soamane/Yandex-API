@@ -8,6 +8,7 @@
 class Requests
 {
 public:
+	static curl_slist* AddHeader(std::string_view header, ...);
 	static std::string PerformHttpRequest(const std::string& url, curl_slist* headers);
 
 private:

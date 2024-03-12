@@ -1,5 +1,20 @@
 #include "Requests.hpp"
 
+curl_slist* Requests::AddHeader(std::string_view first, ...) {
+    curl_slist* headers = nullptr;
+    headers = curl_slist_append(headers, first.data());
+
+    va_list args;
+    va_start(args, first);
+
+    while (const char* header = va_arg(args, const char*)) {
+        headers = curl_slist_append(headers, header);
+    }
+
+    va_end(args);
+    return headers;
+}
+
 std::string Requests::PerformHttpRequest(const std::string& url, curl_slist* headers) {
     curl_global_init(CURL_GLOBAL_ALL);
 
