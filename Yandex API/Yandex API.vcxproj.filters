@@ -38,5 +38,17 @@
     <ClInclude Include="Parser\Parser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="API\Structs\Weather\CurrentWeather.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Enums\YandexTypes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Structs\Weather\ForecastWeather.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="API\Structs\Weather\WeatherParts\WeatherParts.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

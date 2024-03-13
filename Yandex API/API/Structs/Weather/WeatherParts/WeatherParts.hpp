@@ -20,7 +20,6 @@ struct WeatherPart
 
     std::string icon;
     std::string wind_dir;
-    std::string datetime;
     std::string condition;
 
     Cloudiness cloudness;
