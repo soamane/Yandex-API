@@ -7,13 +7,11 @@
 
 #include <string>
 
-class ForecastWeather
-{
-	int yd_temp;
+// дописать парсинг и внимание на part-структуры
 
+struct ForecastWeather
+{
 	std::string date;
-	std::string sunrise;
-	std::string sunset;
 
 	CurrentWeather weather;
 
