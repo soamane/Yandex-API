@@ -16,12 +16,12 @@ class YandexAPI
 public:
 	YandexAPI(std::string_view key);
 
-	std::string GetCurrentWeather(double latitude, double longitude);
-	std::string GetForecastWeather(double latitude, double longitude, unsigned int limit);
-
 private:
 	std::string GetVerifyHeader();
 	std::string SetCoordToString(double latitude, double longitude);
+
+	std::string RequestGetCurrentWeather(double latitude, double longitude);
+	std::string RequestGetForecastWeather(double latitude, double longitude, unsigned int limit);
 
 private:
 	const std::string_view m_key;

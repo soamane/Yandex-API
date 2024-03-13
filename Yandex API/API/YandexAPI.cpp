@@ -2,7 +2,7 @@
 
 YandexAPI::YandexAPI(std::string_view key) : m_key(key) { }
 
-std::string YandexAPI::GetCurrentWeather(double latitude, double longitude) {
+std::string YandexAPI::RequestGetCurrentWeather(double latitude, double longitude) {
     const std::string coords = SetCoordToString(latitude, longitude);
     const std::string url = std::format("{}{}", m_fact, coords);
 
@@ -12,7 +12,7 @@ std::string YandexAPI::GetCurrentWeather(double latitude, double longitude) {
     return Requests::PerformHttpRequest(url, headers);
 }
 
-std::string YandexAPI::GetForecastWeather(double latitude, double longitude, unsigned int limit) {
+std::string YandexAPI::RequestGetForecastWeather(double latitude, double longitude, unsigned int limit) {
     const std::string coords = SetCoordToString(latitude, longitude);
     const std::string url = std::format("{}{}&limit={}&hours=false&extra=false", m_forecast, coords, limit);
 
