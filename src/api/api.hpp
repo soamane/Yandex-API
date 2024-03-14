@@ -29,6 +29,7 @@ private:
 
 	std::string RequestGetCurrentWeather(double latitude, double longitude);
 	std::string RequestGetForecastWeather(double latitude, double longitude, unsigned int limit);
+
 private:
 	const std::string_view m_key;
 	const std::string_view m_header = "X-Yandex-API-Key: ";
