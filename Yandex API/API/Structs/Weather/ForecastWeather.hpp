@@ -7,17 +7,15 @@
 
 #include <string>
 
-// дописать парсинг и внимание на part-структуры
-
 struct ForecastWeather
 {
-	std::string date;
+	std::string m_date;
 
-	CurrentWeather weather;
+	CurrentWeather m_weather;
 
-	MorningPart morning;
-	DayPart day;
-	NightPart night;
+	MorningPart m_morning;
+	DayPart m_day;
+	NightPart m_night;
 };
 
 #endif // !FORECASTWEATHER_HPP
