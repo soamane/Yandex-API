@@ -13,7 +13,7 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
     oss << tempConclusion.first << ' ' << '(' << tempConclusion.second << '/' << "10" << ')' << '\n'
         << humidityConclusion.first << ' ' << '(' << humidityConclusion.second << '/' << "10" << ')' << '\n'
         << windConclusion.first << ' ' << '(' << windConclusion.second << '/' << "10" << ')' << '\n'
-        << "Заключение по данным погодных условий: ";
+        << "Weather Conditions Conclusion: ";
 
     int conclusionValue = tempConclusion.second + humidityConclusion.second + windConclusion.second;
 
@@ -24,19 +24,19 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
     };
 
     ClothingRecommendation clothingRecommendations[] = {
-        {"Очень холодно", "Очень теплая одежда: пуховики, теплые свитера, шапки, перчатки, ботинки."},
-        {"В меру холодно", "Утепленная одежда: теплые свитера, куртки, шапки, шарфы, перчатки, утепленная обувь."},
-        {"Тепло", "Легкая одежда: футболки, рубашки, шорты, юбки, легкие куртки, легкая обувь."},
-        {"Жарко", "Очень легкая одежда: футболки, шорты, юбки, платья, легкие рубашки, обувь с открытыми носками."},
-        {"Очень жарко", "Минимальная одежда для защиты от солнца: легкая одежда из хлопка или льна, шорты, футболки, шляпы, солнцезащитные очки, обувь с открытыми носками, солнцезащитный крем."}
+        {"Very Cold", "Very warm clothing: padded jackets, warm sweaters, hats, gloves, boots."},
+        {"Quite Cold", "Insulated clothing: warm sweaters, jackets, hats, scarves, gloves, insulated footwear."},
+        {"Cool", "Light clothing: t-shirts, shirts, shorts, skirts, light jackets, lightweight footwear."},
+        {"Warm", "Very light clothing: t-shirts, shorts, skirts, dresses, lightweight shirts, open-toed shoes."},
+        {"Very Hot", "Minimal clothing for sun protection: light cotton or linen clothing, shorts, t-shirts, hats, sunglasses, open-toed shoes, sunscreen."}
     };
 
     for (const auto& recommendation : clothingRecommendations) {
-        if ((conclusionValue >= 0 && conclusionValue <= 3 && recommendation.conditionDescription == "Очень холодно") ||
-            (conclusionValue >= 4 && conclusionValue <= 7 && recommendation.conditionDescription == "В меру холодно") ||
-            (conclusionValue >= 8 && conclusionValue <= 11 && recommendation.conditionDescription == "Тепло") ||
-            (conclusionValue >= 12 && conclusionValue <= 15 && recommendation.conditionDescription == "Жарко") ||
-            (conclusionValue >= 16 && conclusionValue <= 18 && recommendation.conditionDescription == "Очень жарко")) {
+        if ((conclusionValue >= 0 && conclusionValue <= 3 && recommendation.conditionDescription == "Very Cold") ||
+            (conclusionValue >= 4 && conclusionValue <= 7 && recommendation.conditionDescription == "Quite Cold") ||
+            (conclusionValue >= 8 && conclusionValue <= 11 && recommendation.conditionDescription == "Cool") ||
+            (conclusionValue >= 12 && conclusionValue <= 15 && recommendation.conditionDescription == "Warm") ||
+            (conclusionValue >= 16 && conclusionValue <= 18 && recommendation.conditionDescription == "Very Hot")) {
             oss << recommendation.conditionDescription << '\n' << recommendation.clothingType;
         }
     }
@@ -91,32 +91,32 @@ WindCondition Analyzer::GetWindCondition(float wind_speed) {
 }
 
 std::pair<std::string, int> Analyzer::GetTempConclusion(TempCondition tempCondition) {
-    std::string conclusion = "\t> Анализ температуры: ";
+    std::string conclusion = "\t> Temperature Analysis: ";
     int conclusionValue = 0;
 
     switch (tempCondition) {
         case TempCondition::VERY_COLD:
-            conclusion += "очень холодно";
+            conclusion += "very cold";
             conclusionValue += 1;
             break;
         case TempCondition::QUITE_COLD:
-            conclusion += "довольно холодно";
+            conclusion += "quite cold";
             conclusionValue += 2;
             break;
         case TempCondition::COOL:
-            conclusion += "прохладно";
+            conclusion += "cool";
             conclusionValue += 3;
             break;
         case TempCondition::SLIGHT_CHILL:
-            conclusion += "с прохладным воздухом";
+            conclusion += "slightly chilly";
             conclusionValue += 4;
             break;
         case TempCondition::WARM:
-            conclusion += "тепло";
+            conclusion += "warm";
             conclusionValue += 5;
             break;
         case TempCondition::HOT:
-            conclusion += "жарко";
+            conclusion += "hot";
             conclusionValue += 6;
             break;
     }
@@ -125,24 +125,24 @@ std::pair<std::string, int> Analyzer::GetTempConclusion(TempCondition tempCondit
 }
 
 std::pair<std::string, int> Analyzer::GetHumidityConclusion(HumidityCondition humidityCondition) {
-    std::string conclusion = "\t> Анализ влажности воздуха: ";
+    std::string conclusion = "\t> Humidity Analysis: ";
     int conclusionValue = 0;
 
     switch (humidityCondition) {
         case HumidityCondition::DRY:
-            conclusion += "сухая погода";
+            conclusion += "dry weather";
             conclusionValue += 1;
             break;
         case HumidityCondition::COMFORT:
-            conclusion += "комфортная влажность";
+            conclusion += "comfortable humidity";
             conclusionValue += 2;
             break;
         case HumidityCondition::HIGH:
-            conclusion += "влажная погода";
+            conclusion += "humid weather";
             conclusionValue += 3;
             break;
         case HumidityCondition::EXTREME:
-            conclusion += "очень высокая влажность";
+            conclusion += "very high humidity";
             conclusionValue += 4;
             break;
     }
@@ -151,28 +151,28 @@ std::pair<std::string, int> Analyzer::GetHumidityConclusion(HumidityCondition hu
 }
 
 std::pair<std::string, int> Analyzer::GetWindConclusion(WindCondition windCondition) {
-    std::string conclusion = "\t> Анализ силы ветра: ";
+    std::string conclusion = "\t> Wind Strength Analysis: ";
     int conclusionValue = 0;
 
     switch (windCondition) {
         case WindCondition::CALM:
-            conclusion += "ветра почти нет";
+            conclusion += "almost no wind";
             conclusionValue += 1;
             break;
         case WindCondition::LIGHT_BREEZE:
-            conclusion += "легкий ветер";
+            conclusion += "light breeze";
             conclusionValue += 2;
             break;
         case WindCondition::MODERATE_BREEZE:
-            conclusion += "умеренный ветер";
+            conclusion += "moderate breeze";
             conclusionValue += 3;
             break;
         case WindCondition::STRONG_BREEZE:
-            conclusion += "сильный ветер";
+            conclusion += "strong breeze";
             conclusionValue += 4;
             break;
         case WindCondition::HIGH_WIND:
-            conclusion += "очень сильный ветер";
+            conclusion += "very strong wind";
             conclusionValue += 5;
             break;
     }
