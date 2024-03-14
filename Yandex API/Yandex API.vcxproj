@@ -24,13 +24,14 @@
     <ProjectGuid>{4bae0702-ac35-475d-90df-455eede79829}</ProjectGuid>
     <RootNamespace>YandexAPI</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Yandex</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -43,7 +44,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -71,20 +72,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;..\Assets\rapidjson\include\rapidjson;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;..\Assets\rapidjson\include\rapidjson;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;..\Assets\rapidjson\include\rapidjson;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;..\Assets\rapidjson\include\rapidjson;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;..\Assets\rapidjson\include;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;..\Assets\curl\builds\libcurl-vc-x64-release-static-ipv6-sspi-schannel\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,7 +98,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,7 +116,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,7 +130,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,23 +148,23 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="API\YandexAPI.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Parser\Parser.cpp" />
-    <ClCompile Include="Requests\Requests.cpp" />
+    <ClCompile Include="api\api.cc" />
+    <ClCompile Include="main\main.cc" />
+    <ClCompile Include="jsonparser\jsonparser.cc" />
+    <ClCompile Include="curlrequests\curlrequests.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="API\Enums\YandexTypes.hpp" />
-    <ClInclude Include="API\Structs\Weather\CurrentWeather.hpp" />
-    <ClInclude Include="API\Structs\Weather\ForecastWeather.hpp" />
-    <ClInclude Include="API\Structs\Weather\WeatherParts\WeatherParts.hpp" />
-    <ClInclude Include="API\YandexAPI.hpp" />
-    <ClInclude Include="Parser\Parser.hpp" />
-    <ClInclude Include="Requests\Requests.hpp" />
+    <ClInclude Include="api\enums\primitives.hpp" />
+    <ClInclude Include="api\structs\factweather.hpp" />
+    <ClInclude Include="api\structs\forecastweather.hpp" />
+    <ClInclude Include="api\structs\parts\dayparts.hpp" />
+    <ClInclude Include="api\api.hpp" />
+    <ClInclude Include="jsonparser\jsonparser.hpp" />
+    <ClInclude Include="curlrequests\curlrequests.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

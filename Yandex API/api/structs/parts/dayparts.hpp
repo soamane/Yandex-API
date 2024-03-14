@@ -2,7 +2,7 @@
 #ifndef WEATHERPARTS_HPP
 #define WEATHERPARTS_HPP
 
-#include "../../../Enums/YandexTypes.hpp"
+#include "../../enums/primitives.hpp"
 
 #include <string>
 

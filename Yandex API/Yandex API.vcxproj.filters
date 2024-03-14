@@ -15,39 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main\main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="API\YandexAPI.cpp">
+    <ClCompile Include="api\api.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Requests\Requests.cpp">
+    <ClCompile Include="curlrequests\curlrequests.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Parser\Parser.cpp">
+    <ClCompile Include="jsonparser\jsonparser.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="API\YandexAPI.hpp">
+    <ClInclude Include="api\api.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Requests\Requests.hpp">
+    <ClInclude Include="curlrequests\curlrequests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Parser\Parser.hpp">
+    <ClInclude Include="jsonparser\jsonparser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\Structs\Weather\CurrentWeather.hpp">
+    <ClInclude Include="api\structs\factweather.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\Enums\YandexTypes.hpp">
+    <ClInclude Include="api\enums\primitives.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\Structs\Weather\ForecastWeather.hpp">
+    <ClInclude Include="api\structs\forecastweather.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="API\Structs\Weather\WeatherParts\WeatherParts.hpp">
+    <ClInclude Include="api\structs\parts\dayparts.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

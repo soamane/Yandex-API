@@ -2,11 +2,11 @@
 #ifndef YANDEXAPI_HPP
 #define YANDEXAPI_HPP
 
-#include "Structs/Weather/CurrentWeather.hpp"
-#include "Structs/Weather/ForecastWeather.hpp"
+#include "structs/factweather.hpp"
+#include "structs/forecastweather.hpp"
 
-#include "../Parser/Parser.hpp"
-#include "../Requests/Requests.hpp"
+#include "../jsonparser/jsonparser.hpp"
+#include "../curlrequests/curlrequests.hpp"
 
 #include <curl/curl.h>
 
@@ -20,7 +20,7 @@ class YandexAPI
 public:
 	YandexAPI(std::string_view key);
 
-	CurrentWeather GetCurrentWeather(double latitude, double longitude);
+	FactWeather GetFactWeather(double latitude, double longitude);
 	std::vector<ForecastWeather> GetForecastWeather(double latitude, double longitude, int limit);
 
 private:

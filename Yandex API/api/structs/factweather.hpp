@@ -2,11 +2,11 @@
 #ifndef CURRENTWEATHER_HPP
 #define CURRENTWEATHER_HPP
 
-#include "../../Enums/YandexTypes.hpp"
+#include "../enums/primitives.hpp"
 
 #include <string>
 
-struct CurrentWeather
+struct FactWeather
 {
 	int temp;
 	int feels_like;

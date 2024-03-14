@@ -1,6 +1,6 @@
-#include "Requests.hpp"
+#include "curlrequests.hpp"
 
-curl_slist* Requests::AddHeader(std::string_view first, ...) {
+curl_slist* CurlRequests::AddHeader(std::string_view first, ...) {
     curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, first.data());
 
@@ -15,7 +15,7 @@ curl_slist* Requests::AddHeader(std::string_view first, ...) {
     return headers;
 }
 
-std::string Requests::PerformHttpRequest(const std::string& url, curl_slist* headers) {
+std::string CurlRequests::PerformHttpRequest(const std::string& url, curl_slist* headers) {
     curl_global_init(CURL_GLOBAL_ALL);
 
     CURL* curl = nullptr;
@@ -31,7 +31,7 @@ std::string Requests::PerformHttpRequest(const std::string& url, curl_slist* hea
     std::string response;
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &Requests::Callback);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &CurlRequests::Callback);
 
     CURLcode result = curl_easy_perform(curl);
     if (result != CURLE_OK) {
@@ -45,7 +45,7 @@ std::string Requests::PerformHttpRequest(const std::string& url, curl_slist* hea
     return response;
 }
 
-std::size_t Requests::Callback(void* ptr, size_t size, size_t count, std::string* data) {
+std::size_t CurlRequests::Callback(void* ptr, size_t size, size_t count, std::string* data) {
     data->append(static_cast<char*>(ptr), size * count);
     return size * count;
 }
