@@ -9,7 +9,7 @@ int main() {
 	FactWeather fact = api.GetFactWeather(56.8597, 35.9119);
 	
 	Analyzer analyzer;
-	std::cout << analyzer.AnalysisWeather(fact).str();
+	std::cout << analyzer.AnalysisWeather(fact).str() << std::endl;
 
 	return 0;
 }

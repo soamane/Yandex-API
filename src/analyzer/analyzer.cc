@@ -26,7 +26,7 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
     ClothingRecommendation clothingRecommendations[] = {
         {"Very Cold", "Very warm clothing: padded jackets, warm sweaters, hats, gloves, boots."},
         {"Quite Cold", "Insulated clothing: warm sweaters, jackets, hats, scarves, gloves, insulated footwear."},
-        {"Cool", "Light clothing: t-shirts, shirts, shorts, skirts, light jackets, lightweight footwear."},
+        {"Cool", "It is recommended to wear a lightweight jacket or vest, a warm sweater or cardigan paired with jeans or trousers, light footwear such as sneakers, and also to add a scarf for additional protection from the cool wind."},
         {"Warm", "Very light clothing: t-shirts, shorts, skirts, dresses, lightweight shirts, open-toed shoes."},
         {"Very Hot", "Minimal clothing for sun protection: light cotton or linen clothing, shorts, t-shirts, hats, sunglasses, open-toed shoes, sunscreen."}
     };

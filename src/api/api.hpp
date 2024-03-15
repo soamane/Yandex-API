@@ -27,7 +27,7 @@ private:
 	std::string GetVerifyHeader();
 	std::string SetCoordToString(double latitude, double longitude);
 
-	std::string RequestGetCurrentWeather(double latitude, double longitude);
+	std::string RequestGetFactWeather(double latitude, double longitude);
 	std::string RequestGetForecastWeather(double latitude, double longitude, unsigned int limit);
 
 private:
