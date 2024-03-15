@@ -10,6 +10,7 @@
 #include <vector>
 #include <sstream>
 #include <utility>
+#include <format>
 
 class Analyzer
 {

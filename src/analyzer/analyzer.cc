@@ -5,14 +5,14 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
     HumidityCondition humidityCondition = GetHumidityCondition(factWeather.humidity);
     WindCondition windCondition = GetWindCondition(factWeather.wind_speed);
 
-    std::pair<std::string, int> tempConclusion = GetTempConclusion(tempCondition);
-    std::pair<std::string, int> humidityConclusion = GetHumidityConclusion(humidityCondition);
-    std::pair<std::string, int> windConclusion = GetWindConclusion(windCondition);
+    auto tempConclusion = GetTempConclusion(tempCondition);
+    auto humidityConclusion = GetHumidityConclusion(humidityCondition);
+    auto windConclusion = GetWindConclusion(windCondition);
 
     std::ostringstream oss;
-    oss << tempConclusion.first << ' ' << '(' << tempConclusion.second << '/' << "10" << ')' << '\n'
-        << humidityConclusion.first << ' ' << '(' << humidityConclusion.second << '/' << "10" << ')' << '\n'
-        << windConclusion.first << ' ' << '(' << windConclusion.second << '/' << "10" << ')' << '\n'
+    oss << std::format("{} ({}/10)\n", tempConclusion.first, tempConclusion.second)
+        << std::format("{} ({}/10)\n", humidityConclusion.first, humidityConclusion.second)
+        << std::format("{} ({}/10)\n", windConclusion.first, windConclusion.second)
         << "Weather Conditions Conclusion: ";
 
     int conclusionValue = tempConclusion.second + humidityConclusion.second + windConclusion.second;
@@ -37,13 +37,12 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
             (conclusionValue >= 8 && conclusionValue <= 11 && recommendation.conditionDescription == "Cool") ||
             (conclusionValue >= 12 && conclusionValue <= 15 && recommendation.conditionDescription == "Warm") ||
             (conclusionValue >= 16 && conclusionValue <= 18 && recommendation.conditionDescription == "Very Hot")) {
-            oss << recommendation.conditionDescription << '\n' << recommendation.clothingType;
+            oss << std::format("\n{}\n{}", recommendation.conditionDescription, recommendation.clothingType);
         }
     }
 
     return oss;
 }
-
 std::ostringstream Analyzer::AnalysisWeather(const std::vector<ForecastWeather>& factWeather) {
     return std::ostringstream();
 }
