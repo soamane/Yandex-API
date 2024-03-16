@@ -16,20 +16,6 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
 
     int conclusionValue = tempConclusion.second + humidityConclusion.second + windConclusion.second;
 
-    struct ClothingRecommendation
-    {
-        std::string conditionDescription;
-        std::string clothingType;
-    };
-
-    ClothingRecommendation clothingRecommendations[] = {
-        {"Very Cold", "Very warm clothing: padded jackets, warm sweaters, hats, gloves, boots."},
-        {"Quite Cold", "Insulated clothing: warm sweaters, jackets, hats, scarves, gloves, insulated footwear."},
-        {"Cool", "It is recommended to wear a lightweight jacket or vest, a warm sweater or cardigan paired with jeans or trousers, light footwear such as sneakers, and also to add a scarf for additional protection from the cool wind."},
-        {"Warm", "Very light clothing: t-shirts, shorts, skirts, dresses, lightweight shirts, open-toed shoes."},
-        {"Very Hot", "Minimal clothing for sun protection: light cotton or linen clothing, shorts, t-shirts, hats, sunglasses, open-toed shoes, sunscreen."}
-    };
-
     for (const auto& recommendation : clothingRecommendations) {
         if ((conclusionValue >= 0 && conclusionValue <= 3 && recommendation.conditionDescription == "Very Cold") ||
             (conclusionValue >= 4 && conclusionValue <= 7 && recommendation.conditionDescription == "Quite Cold") ||
