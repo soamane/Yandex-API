@@ -7,11 +7,6 @@ FactWeather YandexAPI::GetFactWeather(double latitude, double longitude) {
     return Parser::ParseCurrentWeatherData(data);
 }
 
-std::vector<ForecastWeather> YandexAPI::GetForecastWeather(double latitude, double longitude, int limit) {
-    const std::string data = RequestGetForecastWeather(latitude, longitude, limit);
-    return Parser::ParseForecastWeatherData(data);
-}
-
 std::string YandexAPI::RequestGetFactWeather(double latitude, double longitude) {
     const std::string coords = SetCoordToString(latitude, longitude);
     const std::string url = std::format("{}{}", m_fact, coords);

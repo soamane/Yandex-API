@@ -2,7 +2,7 @@
 #ifndef CURRENTWEATHER_HPP
 #define CURRENTWEATHER_HPP
 
-#include "../enums/primitives.hpp"
+#include "../enums/datatypes.hpp"
 
 #include <string>
 

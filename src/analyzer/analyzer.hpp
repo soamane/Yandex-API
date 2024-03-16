@@ -3,7 +3,6 @@
 #define ANALYZER_HPP
 
 #include "../api/structs/factweather.hpp"
-#include "../api/structs/forecastweather.hpp"
 
 #include "conditions/conditions.hpp"
 
@@ -16,7 +15,6 @@ class Analyzer
 {
 public:
 	std::ostringstream  AnalysisWeather(const FactWeather& factWeather);
-	std::ostringstream AnalysisWeather(const std::vector<ForecastWeather>& factWeather);
 
 private:
 	TempCondition GetTempCondition(int temp);
