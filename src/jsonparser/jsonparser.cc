@@ -1,6 +1,6 @@
 #include "jsonparser.hpp"
 
-FactWeather Parser::ParseCurrentWeatherData(std::string_view json) {
+FactWeather Parser::ParseFactWeatherData(std::string_view json) {
 	rapidjson::Document document;
 
 	document.Parse(json.data());
