@@ -1,5 +1,4 @@
 #include "../api/api.hpp"
-#include "../analyzer/analyzer.hpp"
 
 #include <iostream>
 
