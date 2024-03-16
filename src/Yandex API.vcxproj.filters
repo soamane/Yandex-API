@@ -27,9 +27,6 @@
     <ClCompile Include="jsonparser\jsonparser.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="analyzer\analyzer.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api\api.hpp">
@@ -45,12 +42,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="api\enums\datatypes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="analyzer\analyzer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="analyzer\conditions\conditions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
