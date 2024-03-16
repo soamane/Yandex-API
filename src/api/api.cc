@@ -4,7 +4,7 @@ YandexAPI::YandexAPI(std::string_view key) : m_key(key) { }
 
 FactWeather YandexAPI::GetFactWeather(double latitude, double longitude) {
     const std::string data = RequestGetFactWeather(latitude, longitude);
-    return Parser::ParseCurrentWeatherData(data);
+    return Parser::ParseFactWeatherData(data);
 }
 
 std::string YandexAPI::RequestGetFactWeather(double latitude, double longitude) {

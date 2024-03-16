@@ -13,7 +13,7 @@
 class Parser
 {
 public:
-	static FactWeather ParseCurrentWeatherData(std::string_view json);
+	static FactWeather ParseFactWeatherData(std::string_view json);
 };
 
 #endif // !JSONPARSER_HPP
