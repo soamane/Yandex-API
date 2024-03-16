@@ -3,7 +3,6 @@
 #define YANDEXAPI_HPP
 
 #include "structs/factweather.hpp"
-#include "structs/forecastweather.hpp"
 
 #include "../jsonparser/jsonparser.hpp"
 #include "../curlrequests/curlrequests.hpp"
@@ -21,7 +20,6 @@ public:
 	YandexAPI(std::string_view key);
 
 	FactWeather GetFactWeather(double latitude, double longitude);
-	std::vector<ForecastWeather> GetForecastWeather(double latitude, double longitude, int limit);
 
 private:
 	std::string GetVerifyHeader();

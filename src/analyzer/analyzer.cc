@@ -12,8 +12,7 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
     std::ostringstream oss;
     oss << std::format("{} ({}/10)\n", tempConclusion.first, tempConclusion.second)
         << std::format("{} ({}/10)\n", humidityConclusion.first, humidityConclusion.second)
-        << std::format("{} ({}/10)\n", windConclusion.first, windConclusion.second)
-        << "Weather Conditions Conclusion: ";
+        << std::format("{} ({}/10)\n", windConclusion.first, windConclusion.second);
 
     int conclusionValue = tempConclusion.second + humidityConclusion.second + windConclusion.second;
 
@@ -37,14 +36,11 @@ std::ostringstream Analyzer::AnalysisWeather(const FactWeather& factWeather) {
             (conclusionValue >= 8 && conclusionValue <= 11 && recommendation.conditionDescription == "Cool") ||
             (conclusionValue >= 12 && conclusionValue <= 15 && recommendation.conditionDescription == "Warm") ||
             (conclusionValue >= 16 && conclusionValue <= 18 && recommendation.conditionDescription == "Very Hot")) {
-            oss << std::format("\n{}\n{}", recommendation.conditionDescription, recommendation.clothingType);
+            oss << std::format("Weather Conditions Conclusion: {}\n{}", recommendation.conditionDescription, recommendation.clothingType);
         }
     }
 
     return oss;
-}
-std::ostringstream Analyzer::AnalysisWeather(const std::vector<ForecastWeather>& factWeather) {
-    return std::ostringstream();
 }
 
 TempCondition Analyzer::GetTempCondition(int temp) {

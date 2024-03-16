@@ -168,10 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="analyzer\conditions\conditions.hpp" />
-    <ClInclude Include="api\enums\primitives.hpp" />
+    <ClInclude Include="api\enums\datatypes.hpp" />
     <ClInclude Include="api\structs\factweather.hpp" />
-    <ClInclude Include="api\structs\forecastweather.hpp" />
-    <ClInclude Include="api\structs\parts\dayparts.hpp" />
     <ClInclude Include="api\api.hpp" />
     <ClInclude Include="jsonparser\jsonparser.hpp" />
     <ClInclude Include="curlrequests\curlrequests.hpp" />
