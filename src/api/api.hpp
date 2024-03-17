@@ -2,7 +2,7 @@
 #ifndef YANDEXAPI_HPP
 #define YANDEXAPI_HPP
 
-#include "structs/factweather.hpp"
+#include "structs/weather.hpp"
 #include "structs/forecastweather.hpp"
 
 #include "../jsonparser/jsonparser.hpp"
@@ -20,7 +20,7 @@ class YandexAPI
 public:
 	YandexAPI(std::string_view key);
 
-	FactWeather GetFactWeather(double latitude, double longitude);
+	Weather GetWeather(double latitude, double longitude);
 	std::vector<ForecastWeather> GetForecastWeather(double latitude, double longitude, unsigned int limit);
 
 private:

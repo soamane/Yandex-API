@@ -38,9 +38,6 @@
     <ClInclude Include="jsonparser\jsonparser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="api\structs\factweather.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="api\enums\datatypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="api\structs\forecastweather.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="api\structs\weather.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="api\structs\daypart.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #ifndef FORECASTWEATHER_HPP
 #define FORECASTWEATHER_HPP
 
-#include "factweather.hpp"
+#include "daypart.hpp"
 
 #include <vector>
 
@@ -10,10 +10,11 @@ struct ForecastWeather
 {
 	std::string m_date;
 
-	Morning m_morning;
-	Day m_day;
-	Evening m_evening;
-	Night m_night;
+	DayPart m_morning;
+	DayPart m_day;
+	DayPart m_evening;
+	DayPart m_night;
+
 };
 
 #endif // !FORECASTWEATHER_HPP
