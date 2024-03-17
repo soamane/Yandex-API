@@ -29,15 +29,15 @@ std::vector<ForecastWeather> Parser::ParseForecastWeatherData(std::string_view j
 
     std::vector<ForecastWeather> resultForecast(forecasts.Size());
 
-    for (const auto& forecast : forecasts.GetArray()) {
-        resultForecast.emplace_back();
-        ForecastWeather& currentForecast = resultForecast.back();
-        currentForecast.m_date = forecast["date"].GetString();
+    for (rapidjson::SizeType i = 0; i < forecasts.Size(); i++) {
+        const rapidjson::Value& forecast = forecasts[i];
 
-        FillWeatherFromJson(forecast["parts"]["morning"], currentForecast.m_morning);
-        FillWeatherFromJson(forecast["parts"]["day"], currentForecast.m_day);
-        FillWeatherFromJson(forecast["parts"]["evening"], currentForecast.m_evening);
-        FillWeatherFromJson(forecast["parts"]["night"], currentForecast.m_night);
+        resultForecast[i].m_date = forecast["date"].GetString();
+
+        FillWeatherFromJson(forecast["parts"]["morning"], resultForecast[i].m_morning);
+        FillWeatherFromJson(forecast["parts"]["day"], resultForecast[i].m_day);
+        FillWeatherFromJson(forecast["parts"]["evening"], resultForecast[i].m_evening);
+        FillWeatherFromJson(forecast["parts"]["night"], resultForecast[i].m_night);
     }
 
     return resultForecast;
