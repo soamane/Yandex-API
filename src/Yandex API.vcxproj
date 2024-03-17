@@ -166,9 +166,11 @@
     <ClCompile Include="curlrequests\curlrequests.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="analyzer\analyzer.hpp" />
     <ClInclude Include="api\enums\datatypes.hpp" />
     <ClInclude Include="api\structs\factweather.hpp" />
     <ClInclude Include="api\api.hpp" />
+    <ClInclude Include="api\structs\forecastweather.hpp" />
     <ClInclude Include="jsonparser\jsonparser.hpp" />
     <ClInclude Include="curlrequests\curlrequests.hpp" />
   </ItemGroup>
