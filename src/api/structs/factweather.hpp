@@ -28,4 +28,9 @@ struct FactWeather
 	PrecStrength prec_strength;
 };
 
+struct Morning : FactWeather { };
+struct Day : FactWeather { };
+struct Evening : FactWeather { };
+struct Night : FactWeather { };
+
 #endif // !CURRENTWEATHER_HPP

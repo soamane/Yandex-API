@@ -44,5 +44,11 @@
     <ClInclude Include="api\enums\datatypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="analyzer\analyzer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="api\structs\forecastweather.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

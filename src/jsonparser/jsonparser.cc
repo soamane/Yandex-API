@@ -1,29 +1,61 @@
 #include "jsonparser.hpp"
 
 FactWeather Parser::ParseFactWeatherData(std::string_view json) {
-	rapidjson::Document document;
+    rapidjson::Document document;
 
-	document.Parse(json.data());
-	if (!document.IsObject()) {
-		return FactWeather();
-	}
+    document.Parse(json.data());
+    if (!document.IsObject()) {
+        return FactWeather();
+    }
 
-    FactWeather currentWeather{
-            document["temp"].GetInt(),
-            document["feels_like"].GetInt(),
-            document["pressure_mm"].GetInt(),
-            document["pressure_pa"].GetInt(),
-            document["humidity"].GetInt(),
-            document["prec_prob"].GetBool(),
-            document["wind_speed"].GetFloat(),
-            document["icon"].GetString(),
-            document["condition"].GetString(),
-            document["wind_dir"].GetString(),
-            document["daytime"].GetString(),
-            static_cast<Cloudiness>(document["cloudness"].GetInt()),
-            static_cast<PrecType>(document["prec_type"].GetInt()),
-            static_cast<PrecStrength>(document["prec_strength"].GetInt())
-    };
+    FactWeather currentWeather;
+    FillWeatherFromJson(document, currentWeather);
 
-	return currentWeather;
+    return currentWeather;
+}
+
+std::vector<ForecastWeather> Parser::ParseForecastWeatherData(std::string_view json) {
+    rapidjson::Document document;
+
+    document.Parse(json.data());
+    if (!document.IsObject()) {
+        return std::vector<ForecastWeather>();
+    }
+
+    const rapidjson::Value& forecasts = document["forecasts"];
+    if (!forecasts.IsArray()) {
+        return std::vector<ForecastWeather>();
+    }
+
+    std::vector<ForecastWeather> resultForecast(forecasts.Size());
+
+    for (rapidjson::SizeType i = 0; i < forecasts.Size(); i++) {
+        const rapidjson::Value& forecast = forecasts[i];
+
+        resultForecast[i].m_date = forecast["date"].GetString();
+
+        FillWeatherFromJson(forecast["parts"]["morning"], resultForecast[i].m_morning);
+        FillWeatherFromJson(forecast["parts"]["day"], resultForecast[i].m_day);
+        FillWeatherFromJson(forecast["parts"]["evening"], resultForecast[i].m_evening);
+        FillWeatherFromJson(forecast["parts"]["night"], resultForecast[i].m_night);
+    }
+
+    return resultForecast;
+}
+
+void Parser::FillWeatherFromJson(const rapidjson::Value& json, FactWeather& weather) {
+    json.HasMember("temp_avg") ? weather.temp = json["temp_avg"].GetInt() : weather.temp = json["temp"].GetInt();
+    weather.feels_like = json["feels_like"].GetInt();
+    weather.wind_speed = json["wind_speed"].GetDouble();
+    weather.pressure_mm = json["pressure_mm"].GetInt();
+    weather.pressure_pa = json["pressure_pa"].GetInt();
+    weather.humidity = json["humidity"].GetInt();
+    weather.prec_prob = json["prec_prob"].GetBool();
+    weather.icon = json["icon"].GetString();
+    weather.wind_dir = json["wind_dir"].GetString();
+    weather.condition = json["condition"].GetString();
+    weather.daytime = json["daytime"].GetString();
+    weather.cloudness = static_cast<Cloudiness>(json["cloudness"].GetInt());
+    weather.prec_type = static_cast<PrecType>(json["prec_type"].GetInt());
+    weather.prec_strength = static_cast<PrecStrength>(json["prec_strength"].GetInt());
 }
