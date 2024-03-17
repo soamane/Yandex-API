@@ -27,17 +27,19 @@ std::vector<ForecastWeather> Parser::ParseForecastWeatherData(std::string_view j
         return std::vector<ForecastWeather>();
     }
 
-    std::vector<ForecastWeather> resultForecast(forecasts.Size());
+    std::vector<ForecastWeather> resultForecast;
+    resultForecast.resize(forecasts.Size());
 
-    for (rapidjson::SizeType i = 0; i < forecasts.Size(); i++) {
-        const rapidjson::Value& forecast = forecasts[i];
+    for (const auto& forecast : forecasts.GetArray()) {
+        ForecastWeather forecastWeather;
+        forecastWeather.m_date = forecast["date"].GetString();
 
-        resultForecast[i].m_date = forecast["date"].GetString();
+        FillWeatherFromJson(forecast["parts"]["morning"], forecastWeather.m_morning);
+        FillWeatherFromJson(forecast["parts"]["day"], forecastWeather.m_day);
+        FillWeatherFromJson(forecast["parts"]["evening"], forecastWeather.m_evening);
+        FillWeatherFromJson(forecast["parts"]["night"], forecastWeather.m_night);
 
-        FillWeatherFromJson(forecast["parts"]["morning"], resultForecast[i].m_morning);
-        FillWeatherFromJson(forecast["parts"]["day"], resultForecast[i].m_day);
-        FillWeatherFromJson(forecast["parts"]["evening"], resultForecast[i].m_evening);
-        FillWeatherFromJson(forecast["parts"]["night"], resultForecast[i].m_night);
+        resultForecast.push_back(std::move(forecastWeather));
     }
 
     return resultForecast;
