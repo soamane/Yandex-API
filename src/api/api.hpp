@@ -3,14 +3,7 @@
 #define YANDEXAPI_HPP
 
 #include "structs/weather.hpp"
-#include "structs/forecastweather.hpp"
-
-#include "../jsonparser/jsonparser.hpp"
-#include "../curlrequests/curlrequests.hpp"
-
-#include <curl/curl.h>
-
-#include <format>
+#include "structs/forecast.hpp"
 
 #include <string>
 #include <string_view>
@@ -20,22 +13,22 @@ class YandexAPI
 public:
 	YandexAPI(std::string_view key);
 
-	Weather GetWeather(double latitude, double longitude);
-	std::vector<ForecastWeather> GetForecastWeather(double latitude, double longitude, unsigned int limit);
+	const Weather GetWeather(double latitude, double longitude);
+	const std::vector<Forecast> GetForecast(double latitude, double longitude, unsigned int limit);
 
 private:
-	std::string GetVerifyHeader();
-	std::string SetCoordToString(double latitude, double longitude);
+	const std::string GetVerifyHeader();
+	const std::string ConvertCoordToURL(double latitude, double longitude);
 
-	std::string RequestGetFactWeather(double latitude, double longitude);
-	std::string RequestGetForecastWeather(double latitude, double longitude, unsigned int limit);
+	const std::string RequestGetWeather(double latitude, double longitude);
+	const std::string RequestGetForecastWeather(double latitude, double longitude, unsigned int limit);
 
 private:
-	const std::string_view m_key;
-	const std::string_view m_header = "X-Yandex-API-Key: ";
+	const std::string_view apiKey;
+	const std::string apiHeader = "X-Yandex-API-Key: ";
 
-	const std::string_view m_fact = "https://api.weather.yandex.ru/v2/fact?";
-	const std::string_view m_forecast = "https://api.weather.yandex.ru/v2/forecast?";
+	const std::string factWeatherUrl = "https://api.weather.yandex.ru/v2/fact?";
+	const std::string forecastWeatherUrl = "https://api.weather.yandex.ru/v2/forecast?";
 };
 
 #endif // !YANDEXAPI_HPP

@@ -1,44 +1,46 @@
 #include "jsonparser.hpp"
 
-Weather Parser::ParseWeatherData(std::string_view json) {
+#include <stdexcept>
+
+const Weather Parser::ParseWeatherData(std::string_view json) {
     rapidjson::Document document;
 
     document.Parse(json.data());
     if (!document.IsObject()) {
-        return Weather();
+        throw std::runtime_error("Failed parse fact weather json document");
     }
 
-    Weather currentWeather;
-    FillWeatherFromJson(document, currentWeather);
+    Weather weather;
+    FillWeatherFromJson(document, weather);
 
-    return currentWeather;
+    return weather;
 }
 
-std::vector<ForecastWeather> Parser::ParseForecastWeatherData(std::string_view json) {
+const std::vector<Forecast> Parser::ParseForecastData(std::string_view json) {
     rapidjson::Document document;
 
     document.Parse(json.data());
     if (!document.IsObject()) {
-        return std::vector<ForecastWeather>();
+        throw std::runtime_error("Failed parse forecast json document");
     }
 
     const rapidjson::Value& forecasts = document["forecasts"];
     if (!forecasts.IsArray()) {
-        return std::vector<ForecastWeather>();
+        throw std::runtime_error("Failed parse forecasts array");
     }
 
-    std::vector<ForecastWeather> resultForecast;
+    std::vector<Forecast> resultForecast;
     resultForecast.resize(forecasts.Size());
 
-    for (rapidjson::SizeType i = 0; i < forecasts.Size(); i++) {
+    for (rapidjson::SizeType i = 0; i < forecasts.Size(); ++i) {
         const rapidjson::Value& forecast = forecasts[i];
 
-        resultForecast[i].m_date = forecast["date"].GetString();
+        resultForecast[i].date = forecast["date"].GetString();
 
-        FillWeatherFromJson(forecast["parts"]["morning"], resultForecast[i].m_morning);
-        FillWeatherFromJson(forecast["parts"]["day"], resultForecast[i].m_day);
-        FillWeatherFromJson(forecast["parts"]["evening"], resultForecast[i].m_evening);
-        FillWeatherFromJson(forecast["parts"]["night"], resultForecast[i].m_night);
+        FillWeatherFromJson(forecast["parts"]["morning"], resultForecast[i].morning);
+        FillWeatherFromJson(forecast["parts"]["day"], resultForecast[i].day);
+        FillWeatherFromJson(forecast["parts"]["evening"], resultForecast[i].evening);
+        FillWeatherFromJson(forecast["parts"]["night"], resultForecast[i].night);
     }
 
     return resultForecast;
