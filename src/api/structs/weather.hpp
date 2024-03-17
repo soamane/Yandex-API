@@ -1,12 +1,12 @@
 #pragma once
-#ifndef CURRENTWEATHER_HPP
-#define CURRENTWEATHER_HPP
+#ifndef WEATHER_HPP
+#define WEATHER_HPP
 
 #include "../enums/datatypes.hpp"
 
 #include <string>
 
-struct FactWeather
+struct Weather
 {
 	int temp;
 	int feels_like;
@@ -28,9 +28,4 @@ struct FactWeather
 	PrecStrength prec_strength;
 };
 
-struct Morning : FactWeather { };
-struct Day : FactWeather { };
-struct Evening : FactWeather { };
-struct Night : FactWeather { };
-
-#endif // !CURRENTWEATHER_HPP
+#endif // WEATHER_HPP

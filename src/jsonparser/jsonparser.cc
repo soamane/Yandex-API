@@ -1,14 +1,14 @@
 #include "jsonparser.hpp"
 
-FactWeather Parser::ParseFactWeatherData(std::string_view json) {
+Weather Parser::ParseWeatherData(std::string_view json) {
     rapidjson::Document document;
 
     document.Parse(json.data());
     if (!document.IsObject()) {
-        return FactWeather();
+        return Weather();
     }
 
-    FactWeather currentWeather;
+    Weather currentWeather;
     FillWeatherFromJson(document, currentWeather);
 
     return currentWeather;
@@ -30,22 +30,21 @@ std::vector<ForecastWeather> Parser::ParseForecastWeatherData(std::string_view j
     std::vector<ForecastWeather> resultForecast;
     resultForecast.resize(forecasts.Size());
 
-    for (const auto& forecast : forecasts.GetArray()) {
-        ForecastWeather forecastWeather;
-        forecastWeather.m_date = forecast["date"].GetString();
+    for (rapidjson::SizeType i = 0; i < forecasts.Size(); i++) {
+        const rapidjson::Value& forecast = forecasts[i];
 
-        FillWeatherFromJson(forecast["parts"]["morning"], forecastWeather.m_morning);
-        FillWeatherFromJson(forecast["parts"]["day"], forecastWeather.m_day);
-        FillWeatherFromJson(forecast["parts"]["evening"], forecastWeather.m_evening);
-        FillWeatherFromJson(forecast["parts"]["night"], forecastWeather.m_night);
+        resultForecast[i].m_date = forecast["date"].GetString();
 
-        resultForecast.push_back(std::move(forecastWeather));
+        FillWeatherFromJson(forecast["parts"]["morning"], resultForecast[i].m_morning.m_currentWeather);
+        FillWeatherFromJson(forecast["parts"]["day"], resultForecast[i].m_day.m_currentWeather);
+        FillWeatherFromJson(forecast["parts"]["evening"], resultForecast[i].m_evening.m_currentWeather);
+        FillWeatherFromJson(forecast["parts"]["night"], resultForecast[i].m_night.m_currentWeather);
     }
 
     return resultForecast;
 }
 
-void Parser::FillWeatherFromJson(const rapidjson::Value& json, FactWeather& weather) {
+void Parser::FillWeatherFromJson(const rapidjson::Value& json, Weather& weather) {
     json.HasMember("temp_avg") ? weather.temp = json["temp_avg"].GetInt() : weather.temp = json["temp"].GetInt();
     weather.feels_like = json["feels_like"].GetInt();
     weather.wind_speed = json["wind_speed"].GetDouble();
