@@ -2,6 +2,12 @@
 #ifndef DATA_TYPES_HPP
 #define DATA_TYPES_HPP
 
+/* 
+	This file contains predefined enumerations 
+	of specific weather data as specified in the Yandex API.
+*/
+
+
 enum Cloudiness
 {
 	CLEAR,

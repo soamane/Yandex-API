@@ -6,6 +6,7 @@
 
 #include <vector>
 
+// Structure of forecast data
 struct Forecast
 {
 	std::string date;
