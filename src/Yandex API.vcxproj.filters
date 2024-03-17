@@ -50,8 +50,5 @@
     <ClInclude Include="api\structs\weather.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="api\structs\daypart.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
