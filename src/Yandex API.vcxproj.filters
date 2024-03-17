@@ -21,7 +21,7 @@
     <ClCompile Include="api\api.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="curlrequests\curlrequests.cc">
+    <ClCompile Include="httprequest\httprequest.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="jsonparser\jsonparser.cc">
@@ -32,19 +32,19 @@
     <ClInclude Include="api\api.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="curlrequests\curlrequests.hpp">
+    <ClInclude Include="httprequest\httprequest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jsonparser\jsonparser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="api\enums\datatypes.hpp">
+    <ClInclude Include="api\datatypes\datatypes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="analyzer\analyzer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="api\structs\forecastweather.hpp">
+    <ClInclude Include="api\structs\forecast.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="api\structs\weather.hpp">

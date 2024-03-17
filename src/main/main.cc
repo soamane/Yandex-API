@@ -3,10 +3,12 @@
 #include <iostream>
 
 int main() {
-	YandexAPI api("192ae0ad-3a7e-4b1d-891b-fa7ce08c43aa");
+	try {
+		YandexAPI api("192ae0ad-3a7e-4b1d-891b-fa7ce08c43aa");
+		Weather weather = api.GetWeather(90, 180);
 
-	std::vector<ForecastWeather> forecast = api.GetForecastWeather(12.345, 55.342, 5);
-
-
+	} catch (const std::exception& exception) {
+		std::cerr << exception.what();
+	}
 	return 0;
 }

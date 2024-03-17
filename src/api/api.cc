@@ -1,41 +1,47 @@
 #include "api.hpp"
 
-YandexAPI::YandexAPI(std::string_view key) : m_key(key) { }
+#include "../jsonparser/jsonparser.hpp"
+#include "../httprequest/httprequest.hpp"
 
-Weather YandexAPI::GetWeather(double latitude, double longitude) {
-    const std::string data = RequestGetFactWeather(latitude, longitude);
+#include <curl/curl.h>
+#include <format>
+
+YandexAPI::YandexAPI(std::string_view key) : apiKey(key) { }
+
+const Weather YandexAPI::GetWeather(double latitude, double longitude) {
+    const std::string data = RequestGetWeather(latitude, longitude);
     return Parser::ParseWeatherData(data);
 }
 
-std::vector<ForecastWeather> YandexAPI::GetForecastWeather(double latitude, double longitude, unsigned int limit) {
+const std::vector<Forecast> YandexAPI::GetForecast(double latitude, double longitude, unsigned int limit) {
     const std::string data = RequestGetForecastWeather(latitude, longitude, limit);
-    return Parser::ParseForecastWeatherData(data);
+    return Parser::ParseForecastData(data);
 }
 
-std::string YandexAPI::RequestGetFactWeather(double latitude, double longitude) {
-    const std::string coords = SetCoordToString(latitude, longitude);
-    const std::string url = std::format("{}{}", m_fact, coords);
+const std::string YandexAPI::RequestGetWeather(double latitude, double longitude) {
+    const std::string coords = ConvertCoordToURL(latitude, longitude);
+    const std::string url = std::format("{}{}", factWeatherUrl, coords);
 
     const std::string verifyHeader = GetVerifyHeader();
-    curl_slist* headers = CurlRequests::AddHeader(verifyHeader);
+    const curl_slist* headers = HttpRequest::AddHeaders({ verifyHeader });
 
-    return CurlRequests::PerformHttpRequest(url, headers);
+    return HttpRequest::PerformHttpRequest(url, headers);
 }
 
-std::string YandexAPI::RequestGetForecastWeather(double latitude, double longitude, unsigned int limit) {
-    const std::string coords = SetCoordToString(latitude, longitude);
-    const std::string url = std::format("{}{}&limit={}&hours=false&extra=false", m_forecast, coords, limit);
+const std::string YandexAPI::RequestGetForecastWeather(double latitude, double longitude, unsigned int limit) {
+    const std::string coords = ConvertCoordToURL(latitude, longitude);
+    const std::string url = std::format("{}{}&limit={}&hours=false&extra=false", forecastWeatherUrl, coords, limit);
 
     const std::string verifyHeader = GetVerifyHeader();
-    curl_slist* headers = CurlRequests::AddHeader(verifyHeader);
+    const curl_slist* headers = HttpRequest::AddHeaders({ verifyHeader });
 
-    return CurlRequests::PerformHttpRequest(url, headers);
+    return HttpRequest::PerformHttpRequest(url, headers);
 }
 
-std::string YandexAPI::GetVerifyHeader() {
-    return std::format("{}{}", m_header, m_key);
+std::string const YandexAPI::GetVerifyHeader() {
+    return std::format("{}{}", apiHeader, apiKey);
 }
 
-std::string YandexAPI::SetCoordToString(double latitude, double longitude) {
+std::string const YandexAPI::ConvertCoordToURL(double latitude, double longitude) {
     return std::format("lat={}&lon={}", latitude, longitude);
 }

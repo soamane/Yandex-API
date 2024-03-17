@@ -163,16 +163,16 @@
     <ClCompile Include="api\api.cc" />
     <ClCompile Include="main\main.cc" />
     <ClCompile Include="jsonparser\jsonparser.cc" />
-    <ClCompile Include="curlrequests\curlrequests.cc" />
+    <ClCompile Include="httprequest\httprequest.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="analyzer\analyzer.hpp" />
-    <ClInclude Include="api\enums\datatypes.hpp" />
+    <ClInclude Include="api\datatypes\datatypes.hpp" />
     <ClInclude Include="api\api.hpp" />
-    <ClInclude Include="api\structs\forecastweather.hpp" />
+    <ClInclude Include="api\structs\forecast.hpp" />
     <ClInclude Include="api\structs\weather.hpp" />
     <ClInclude Include="jsonparser\jsonparser.hpp" />
-    <ClInclude Include="curlrequests\curlrequests.hpp" />
+    <ClInclude Include="httprequest\httprequest.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

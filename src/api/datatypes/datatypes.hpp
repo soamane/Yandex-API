@@ -1,6 +1,6 @@
 #pragma once
-#ifndef YANDEXTYPES_HPP
-#define YANDEXTYPES_HPP
+#ifndef DATA_TYPES_HPP
+#define DATA_TYPES_HPP
 
 enum Cloudiness
 {
@@ -29,4 +29,4 @@ enum PrecStrength
 	VERY_STRONG
 };
 
-#endif // !YANDEXTYPES_HPP
+#endif // !DATA_TYPES_HPP

@@ -2,7 +2,7 @@
 #ifndef WEATHER_HPP
 #define WEATHER_HPP
 
-#include "../enums/datatypes.hpp"
+#include "../datatypes/datatypes.hpp"
 
 #include <string>
 
