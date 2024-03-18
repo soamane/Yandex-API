@@ -14,7 +14,7 @@ const Weather YandexAPI::GetWeather(double latitude, double longitude) {
 }
 
 const std::vector<Forecast> YandexAPI::GetForecast(double latitude, double longitude, unsigned int limit) {
-    const std::string data = RequestGetForecastWeather(latitude, longitude, limit);
+    const std::string data = RequestGetForecast(latitude, longitude, limit);
     return Parser::ParseForecastData(data);
 }
 
@@ -28,7 +28,7 @@ const std::string YandexAPI::RequestGetWeather(double latitude, double longitude
     return HttpRequest::PerformHttpRequest(url, headers);
 }
 
-const std::string YandexAPI::RequestGetForecastWeather(double latitude, double longitude, unsigned int limit) {
+const std::string YandexAPI::RequestGetForecast(double latitude, double longitude, unsigned int limit) {
     const std::string coords = ConvertCoordToURL(latitude, longitude);
     const std::string url = std::format("{}{}&limit={}&hours=false&extra=false", forecastWeatherUrl, coords, limit);
 
@@ -38,10 +38,10 @@ const std::string YandexAPI::RequestGetForecastWeather(double latitude, double l
     return HttpRequest::PerformHttpRequest(url, headers);
 }
 
-std::string const YandexAPI::GetVerifyHeader() {
+const std::string YandexAPI::GetVerifyHeader() {
     return std::format("{}{}", apiHeader, apiKey);
 }
 
-std::string const YandexAPI::ConvertCoordToURL(double latitude, double longitude) {
+const std::string YandexAPI::ConvertCoordToURL(double latitude, double longitude) {
     return std::format("lat={}&lon={}", latitude, longitude);
 }

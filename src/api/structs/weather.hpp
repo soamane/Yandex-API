@@ -6,7 +6,7 @@
 
 #include <string>
 
-// Structure of primary weather data
+// Structure of weather data
 struct Weather
 {
 	int temp;
