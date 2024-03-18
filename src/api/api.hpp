@@ -39,7 +39,7 @@ private:
 	const std::string RequestGetWeather(double latitude, double longitude);
 
 	// Performs a request to obtain weather forecast conditions in JSON format.
-	const std::string RequestGetForecastWeather(double latitude, double longitude, unsigned int limit);
+	const std::string RequestGetForecast(double latitude, double longitude, unsigned int limit);
 
 private:
 	const std::string_view apiKey; // Individual API key from Yandex.
