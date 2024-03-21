@@ -20,7 +20,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;     
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;      
-    
+    io.IniFilename = nullptr;
+    io.LogFilename = nullptr;
+
     ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();
