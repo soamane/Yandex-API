@@ -104,9 +104,9 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -120,11 +120,11 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -136,9 +136,9 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,15 +152,16 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_a.lib;ws2_32.lib;crypt32.lib;wldap32.lib;normaliz.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="api\api.cc" />
+    <ClCompile Include="gui\gui.cc" />
     <ClCompile Include="gui\imgui\imgui.cpp" />
     <ClCompile Include="gui\imgui\imgui_demo.cpp" />
     <ClCompile Include="gui\imgui\imgui_draw.cpp" />
@@ -168,7 +169,8 @@
     <ClCompile Include="gui\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="gui\imgui\imgui_tables.cpp" />
     <ClCompile Include="gui\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="main\main.cc" />
+    <ClCompile Include="gui\window\window.cc" />
+    <ClCompile Include="winmain\winmain.cc" />
     <ClCompile Include="jsonparser\jsonparser.cc" />
     <ClCompile Include="httprequest\httprequest.cc" />
   </ItemGroup>
@@ -178,6 +180,7 @@
     <ClInclude Include="api\api.hpp" />
     <ClInclude Include="api\structs\forecast.hpp" />
     <ClInclude Include="api\structs\weather.hpp" />
+    <ClInclude Include="gui\gui.hpp" />
     <ClInclude Include="gui\imgui\imconfig.h" />
     <ClInclude Include="gui\imgui\imgui.h" />
     <ClInclude Include="gui\imgui\imgui_impl_dx11.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="gui\imgui\imstb_rectpack.h" />
     <ClInclude Include="gui\imgui\imstb_textedit.h" />
     <ClInclude Include="gui\imgui\imstb_truetype.h" />
+    <ClInclude Include="gui\window\window.hpp" />
     <ClInclude Include="jsonparser\jsonparser.hpp" />
     <ClInclude Include="httprequest\httprequest.hpp" />
   </ItemGroup>
