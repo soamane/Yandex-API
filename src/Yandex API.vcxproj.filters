@@ -24,34 +24,31 @@
     <ClCompile Include="jsonparser\jsonparser.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui.cpp">
+    <ClCompile Include="ui\imgui\imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_demo.cpp">
+    <ClCompile Include="ui\imgui\imgui_demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_draw.cpp">
+    <ClCompile Include="ui\imgui\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_impl_dx11.cpp">
+    <ClCompile Include="ui\imgui\imgui_impl_dx11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_impl_win32.cpp">
+    <ClCompile Include="ui\imgui\imgui_impl_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_tables.cpp">
+    <ClCompile Include="ui\imgui\imgui_tables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\imgui\imgui_widgets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\gui.cc">
+    <ClCompile Include="ui\imgui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="winmain\winmain.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui\window\window.cc">
+    <ClCompile Include="ui\directdevice\directdevice.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -77,34 +74,40 @@
     <ClInclude Include="api\structs\weather.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imconfig.h">
+    <ClInclude Include="ui\imgui\imconfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imgui.h">
+    <ClInclude Include="ui\imgui\imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imgui_impl_dx11.h">
+    <ClInclude Include="ui\imgui\imgui_impl_dx11.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imgui_impl_win32.h">
+    <ClInclude Include="ui\imgui\imgui_impl_win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imgui_internal.h">
+    <ClInclude Include="ui\imgui\imgui_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imstb_rectpack.h">
+    <ClInclude Include="ui\imgui\imstb_rectpack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imstb_textedit.h">
+    <ClInclude Include="ui\imgui\imstb_textedit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\imgui\imstb_truetype.h">
+    <ClInclude Include="ui\imgui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\gui.hpp">
+    <ClInclude Include="ui\fonts\myriadlight.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\window\window.hpp">
+    <ClInclude Include="ui\fonts\myriadregular.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\directdevice\directdevice.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ui.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -161,15 +161,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="api\api.cc" />
-    <ClCompile Include="gui\gui.cc" />
-    <ClCompile Include="gui\imgui\imgui.cpp" />
-    <ClCompile Include="gui\imgui\imgui_demo.cpp" />
-    <ClCompile Include="gui\imgui\imgui_draw.cpp" />
-    <ClCompile Include="gui\imgui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="gui\imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="gui\imgui\imgui_tables.cpp" />
-    <ClCompile Include="gui\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="gui\window\window.cc" />
+    <ClCompile Include="ui\imgui\imgui.cpp" />
+    <ClCompile Include="ui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="ui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ui\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="ui\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ui\imgui\imgui_tables.cpp" />
+    <ClCompile Include="ui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ui\directdevice\directdevice.cc" />
     <ClCompile Include="winmain\winmain.cc" />
     <ClCompile Include="jsonparser\jsonparser.cc" />
     <ClCompile Include="httprequest\httprequest.cc" />
@@ -180,18 +179,20 @@
     <ClInclude Include="api\api.hpp" />
     <ClInclude Include="api\structs\forecast.hpp" />
     <ClInclude Include="api\structs\weather.hpp" />
-    <ClInclude Include="gui\gui.hpp" />
-    <ClInclude Include="gui\imgui\imconfig.h" />
-    <ClInclude Include="gui\imgui\imgui.h" />
-    <ClInclude Include="gui\imgui\imgui_impl_dx11.h" />
-    <ClInclude Include="gui\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="gui\imgui\imgui_internal.h" />
-    <ClInclude Include="gui\imgui\imstb_rectpack.h" />
-    <ClInclude Include="gui\imgui\imstb_textedit.h" />
-    <ClInclude Include="gui\imgui\imstb_truetype.h" />
-    <ClInclude Include="gui\window\window.hpp" />
+    <ClInclude Include="ui\fonts\myriadlight.hpp" />
+    <ClInclude Include="ui\fonts\myriadregular.hpp" />
+    <ClInclude Include="ui\imgui\imconfig.h" />
+    <ClInclude Include="ui\imgui\imgui.h" />
+    <ClInclude Include="ui\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="ui\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="ui\imgui\imgui_internal.h" />
+    <ClInclude Include="ui\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ui\imgui\imstb_textedit.h" />
+    <ClInclude Include="ui\imgui\imstb_truetype.h" />
     <ClInclude Include="jsonparser\jsonparser.hpp" />
     <ClInclude Include="httprequest\httprequest.hpp" />
+    <ClInclude Include="ui\directdevice\directdevice.hpp" />
+    <ClInclude Include="ui\ui.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
