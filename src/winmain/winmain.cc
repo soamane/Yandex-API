@@ -1,4 +1,7 @@
+#include "winmain.hpp"
+
 #include "../ui/directdevice/directdevice.hpp"
+#include "../ui/scene/scene.hpp"
 #include "../ui/ui.hpp"
 
 // Function to handle resource cleanup
@@ -21,7 +24,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     windowClass.hCursor = nullptr;
     windowClass.hbrBackground = nullptr;
     windowClass.lpszMenuName = nullptr;
-    windowClass.lpszClassName = L"YANDEXAPI";
+    windowClass.lpszClassName = reinterpret_cast<LPCWSTR>(WindowParams::className.c_str());
     windowClass.hIconSm = nullptr;
 
     // Register window class
@@ -31,7 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     }
 
     // Create window
-    HWND hWindow = CreateWindowW(windowClass.lpszClassName, L"Yandex API", WS_POPUP, 0, 0, 1, 1, nullptr, nullptr, windowClass.hInstance, nullptr);
+    HWND hWindow = CreateWindowW(windowClass.lpszClassName, reinterpret_cast<LPCWSTR>(WindowParams::windowName.c_str()), WS_POPUP, 0, 0, 1, 1, nullptr, nullptr, windowClass.hInstance, nullptr);
     if (hWindow == nullptr) {
         MessageBox(nullptr, "Failed to create window", "Error", MB_OK | MB_ICONERROR);
         UnregisterClassW(windowClass.lpszClassName, windowClass.hInstance);
@@ -86,9 +89,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
-
-        // Your ImGui code goes here...
-
+        {
+            Scene::Render();
+        }      
         ImGui::EndFrame();
         ImGui::Render();
 

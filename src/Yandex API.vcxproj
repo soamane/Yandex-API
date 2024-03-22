@@ -169,6 +169,7 @@
     <ClCompile Include="ui\imgui\imgui_tables.cpp" />
     <ClCompile Include="ui\imgui\imgui_widgets.cpp" />
     <ClCompile Include="ui\directdevice\directdevice.cc" />
+    <ClCompile Include="ui\scene\scene.cc" />
     <ClCompile Include="winmain\winmain.cc" />
     <ClCompile Include="jsonparser\jsonparser.cc" />
     <ClCompile Include="httprequest\httprequest.cc" />
@@ -192,7 +193,9 @@
     <ClInclude Include="jsonparser\jsonparser.hpp" />
     <ClInclude Include="httprequest\httprequest.hpp" />
     <ClInclude Include="ui\directdevice\directdevice.hpp" />
+    <ClInclude Include="ui\scene\scene.hpp" />
     <ClInclude Include="ui\ui.hpp" />
+    <ClInclude Include="winmain\winmain.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
