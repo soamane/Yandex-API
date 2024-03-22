@@ -1,14 +1,8 @@
 #pragma once
-#ifndef GUI_HPP
-#define GUI_HPP
-
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_win32.h"
-#include "imgui/imgui_impl_dx11.h"
+#ifndef DIRECT_DEVICE_HPP
+#define DIRECT_DEVICE_HPP
 
 #include <d3d11.h>
-
-#include "window/window.hpp"
 
 class DirectDevice
 {
@@ -25,4 +19,4 @@ public:
 	static inline ID3D11RenderTargetView* pTargetView = nullptr;
 };
 
-#endif // !GUI_HPP
+#endif // !DIRECT_DEVICE_HPP
