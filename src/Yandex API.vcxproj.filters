@@ -51,9 +51,6 @@
     <ClCompile Include="ui\directdevice\directdevice.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ui\scene\scene.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api\api.hpp">
@@ -101,22 +98,10 @@
     <ClInclude Include="ui\imgui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\fonts\myriadlight.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui\fonts\myriadregular.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ui\directdevice\directdevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\ui.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="winmain\winmain.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ui\scene\scene.hpp">
+    <ClInclude Include="ui\wndproc\wndproc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
