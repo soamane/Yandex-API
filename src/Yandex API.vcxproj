@@ -31,27 +31,27 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -160,37 +160,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="api\api.cc" />
-    <ClCompile Include="ui\imgui\imgui.cpp" />
-    <ClCompile Include="ui\imgui\imgui_demo.cpp" />
-    <ClCompile Include="ui\imgui\imgui_draw.cpp" />
-    <ClCompile Include="ui\imgui\imgui_impl_dx11.cpp" />
-    <ClCompile Include="ui\imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="ui\imgui\imgui_tables.cpp" />
-    <ClCompile Include="ui\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="ui\directdevice\directdevice.cc" />
+    <ClCompile Include="backend\api\api.cc" />
+    <ClCompile Include="frontend\ui\imgui\imgui.cpp" />
+    <ClCompile Include="frontend\ui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="frontend\ui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="frontend\ui\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="frontend\ui\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="frontend\ui\imgui\imgui_tables.cpp" />
+    <ClCompile Include="frontend\ui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="frontend\ui\directdevice\directdevice.cc" />
     <ClCompile Include="winmain\winmain.cc" />
-    <ClCompile Include="jsonparser\jsonparser.cc" />
-    <ClCompile Include="httprequest\httprequest.cc" />
+    <ClCompile Include="backend\jsonparser\jsonparser.cc" />
+    <ClCompile Include="backend\httprequest\httprequest.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="analyzer\analyzer.hpp" />
-    <ClInclude Include="api\datatypes\datatypes.hpp" />
-    <ClInclude Include="api\api.hpp" />
-    <ClInclude Include="api\structs\forecast.hpp" />
-    <ClInclude Include="api\structs\weather.hpp" />
-    <ClInclude Include="ui\imgui\imconfig.h" />
-    <ClInclude Include="ui\imgui\imgui.h" />
-    <ClInclude Include="ui\imgui\imgui_impl_dx11.h" />
-    <ClInclude Include="ui\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="ui\imgui\imgui_internal.h" />
-    <ClInclude Include="ui\imgui\imstb_rectpack.h" />
-    <ClInclude Include="ui\imgui\imstb_textedit.h" />
-    <ClInclude Include="ui\imgui\imstb_truetype.h" />
-    <ClInclude Include="jsonparser\jsonparser.hpp" />
-    <ClInclude Include="httprequest\httprequest.hpp" />
-    <ClInclude Include="ui\directdevice\directdevice.hpp" />
-    <ClInclude Include="ui\wndproc\wndproc.hpp" />
+    <ClInclude Include="backend\api\datatypes\datatypes.hpp" />
+    <ClInclude Include="backend\api\api.hpp" />
+    <ClInclude Include="backend\api\structs\forecast.hpp" />
+    <ClInclude Include="backend\api\structs\weather.hpp" />
+    <ClInclude Include="frontend\ui\imgui\imconfig.h" />
+    <ClInclude Include="frontend\ui\imgui\imgui.h" />
+    <ClInclude Include="frontend\ui\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="frontend\ui\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="frontend\ui\imgui\imgui_internal.h" />
+    <ClInclude Include="frontend\ui\imgui\imstb_rectpack.h" />
+    <ClInclude Include="frontend\ui\imgui\imstb_textedit.h" />
+    <ClInclude Include="frontend\ui\imgui\imstb_truetype.h" />
+    <ClInclude Include="backend\jsonparser\jsonparser.hpp" />
+    <ClInclude Include="backend\httprequest\httprequest.hpp" />
+    <ClInclude Include="frontend\ui\directdevice\directdevice.hpp" />
+    <ClInclude Include="frontend\ui\wndproc\wndproc.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
