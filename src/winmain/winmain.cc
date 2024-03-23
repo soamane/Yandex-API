@@ -1,5 +1,5 @@
-#include "../ui/wndproc/wndproc.hpp"
-#include "../ui/directdevice/directdevice.hpp"
+#include "../frontend/ui/wndproc/wndproc.hpp"
+#include "../frontend/ui/directdevice/directdevice.hpp"
 
 // Function to handle resource cleanup
 void CleanupResources(HWND hWindow, WNDCLASSEXW& windowClass) {
@@ -9,11 +9,10 @@ void CleanupResources(HWND hWindow, WNDCLASSEXW& windowClass) {
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, L"WindowClass", nullptr };
+    WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, L"YAPI-IMPLEMENT", nullptr };
     RegisterClassExW(&wc);
-    HWND hwnd = ::CreateWindowW(wc.lpszClassName, L"Yandex-API", WS_POPUP, 100, 100, 5, 5, nullptr, nullptr, wc.hInstance, nullptr);
+    HWND hwnd = CreateWindowW(wc.lpszClassName, L"Yandex.Weather", WS_POPUP, 100, 100, 5, 5, nullptr, nullptr, wc.hInstance, nullptr);
 
-    // Initialize Direct3D
     if (!DirectDevice::CreateDevice(hwnd)) {
         DirectDevice::CleanupDevice();
         UnregisterClassW(wc.lpszClassName, wc.hInstance);
@@ -60,7 +59,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         {
-            
+            ImGui::Begin("##main", nullptr);
+            {
+
+            }
+            ImGui::End();
         }
         ImGui::EndFrame();
         ImGui::Render();
