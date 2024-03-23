@@ -1,8 +1,5 @@
-#include "winmain.hpp"
-
+#include "../ui/wndproc/wndproc.hpp"
 #include "../ui/directdevice/directdevice.hpp"
-#include "../ui/scene/scene.hpp"
-#include "../ui/ui.hpp"
 
 // Function to handle resource cleanup
 void CleanupResources(HWND hWindow, WNDCLASSEXW& windowClass) {
@@ -12,109 +9,78 @@ void CleanupResources(HWND hWindow, WNDCLASSEXW& windowClass) {
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    // Initialize window class
-    WNDCLASSEXW windowClass = { };
-    windowClass.cbSize = sizeof(WNDCLASSEX);
-    windowClass.style = CS_CLASSDC;
-    windowClass.lpfnWndProc = WndProc;
-    windowClass.cbClsExtra = 0;
-    windowClass.cbWndExtra = 0;
-    windowClass.hInstance = GetModuleHandle(nullptr);
-    windowClass.hIcon = nullptr;
-    windowClass.hCursor = nullptr;
-    windowClass.hbrBackground = nullptr;
-    windowClass.lpszMenuName = nullptr;
-    windowClass.lpszClassName = reinterpret_cast<LPCWSTR>(WindowParams::className.c_str());
-    windowClass.hIconSm = nullptr;
+    WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, L"WindowClass", nullptr };
+    RegisterClassExW(&wc);
+    HWND hwnd = ::CreateWindowW(wc.lpszClassName, L"Yandex-API", WS_POPUP, 100, 100, 5, 5, nullptr, nullptr, wc.hInstance, nullptr);
 
-    // Register window class
-    if (!RegisterClassExW(&windowClass)) {
-        MessageBox(nullptr, "Failed to register window class", "Error", MB_OK | MB_ICONERROR);
+    // Initialize Direct3D
+    if (!DirectDevice::CreateDevice(hwnd)) {
+        DirectDevice::CleanupDevice();
+        UnregisterClassW(wc.lpszClassName, wc.hInstance);
         return 1;
     }
 
-    // Create window
-    HWND hWindow = CreateWindowW(windowClass.lpszClassName, reinterpret_cast<LPCWSTR>(WindowParams::windowName.c_str()), WS_POPUP, 0, 0, 1, 1, nullptr, nullptr, windowClass.hInstance, nullptr);
-    if (hWindow == nullptr) {
-        MessageBox(nullptr, "Failed to create window", "Error", MB_OK | MB_ICONERROR);
-        UnregisterClassW(windowClass.lpszClassName, windowClass.hInstance);
-        return 1;
-    }
+    ShowWindow(hwnd, SW_HIDE);
+    UpdateWindow(hwnd);
 
-    // Initialize DirectDevice
-    if (!DirectDevice::CreateDevice(hWindow)) {
-        MessageBox(nullptr, "Failed to initialize DirectDevice", "Error", MB_OK | MB_ICONERROR);
-        CleanupResources(hWindow, windowClass);
-        return 1;
-    }
-
-    // Initialize ImGui context
+    IMGUI_CHECKVERSION();
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-    io.IniFilename = nullptr;
-    io.LogFilename = nullptr;
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;        
+    io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       
 
-    // Configure ImGui style
+    ImGui::StyleColorsLight();
+
     ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
         style.WindowRounding = 0.0f;
-        style.WindowPadding = ImVec2(0, 0);
-        style.WindowBorderSize = 0.f;
-        style.ChildBorderSize = 1.f;
+        style.WindowPadding = ImVec2{ 0.f, 0.f };
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
-    ImGui::StyleColorsLight();
 
-    // Initialize ImGui Win32 and DirectX11 bindings
-    ImGui_ImplWin32_Init(hWindow);
+    ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(DirectDevice::pDevice, DirectDevice::pContext);
 
-    // Main loop
-    bool loop = false;
-    while (!loop) {
+    bool done = false;
+    while (!done) {
+        
         MSG msg;
         while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE)) {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-            if (msg.message == WM_QUIT) {
-                loop = true;
-            }
+            ::TranslateMessage(&msg);
+            ::DispatchMessage(&msg);
+            if (msg.message == WM_QUIT)
+                done = true;
         }
+        if (done)
+            break;
 
-        // ImGui frame setup
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
         {
-            Scene::Render();
-        }      
+            
+        }
         ImGui::EndFrame();
         ImGui::Render();
-
-        // Render ImGui draw data
+       
+        DirectDevice::pContext->OMSetRenderTargets(1, &DirectDevice::pTargetView, nullptr);
         ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-        // Update and render ImGui platform windows
         if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
             ImGui::UpdatePlatformWindows();
             ImGui::RenderPlatformWindowsDefault();
         }
 
-        // Present the frame
         DirectDevice::pSwapChain->Present(1, 0);
     }
 
-    // Cleanup resources
-    CleanupResources(hWindow, windowClass);
-
-    // Destroy ImGui context
     ImGui_ImplDX11_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImGui::DestroyContext();
+
+    CleanupResources(hwnd, wc);
 
     return 0;
 }
