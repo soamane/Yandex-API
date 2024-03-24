@@ -161,6 +161,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="backend\api\api.cc" />
+    <ClCompile Include="frontend\ui\extern\fonts\fonts.cpp" />
+    <ClCompile Include="frontend\ui\extern\images\images.cpp" />
     <ClCompile Include="frontend\ui\imgui\imgui.cpp" />
     <ClCompile Include="frontend\ui\imgui\imgui_demo.cpp" />
     <ClCompile Include="frontend\ui\imgui\imgui_draw.cpp" />
@@ -168,7 +170,7 @@
     <ClCompile Include="frontend\ui\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="frontend\ui\imgui\imgui_tables.cpp" />
     <ClCompile Include="frontend\ui\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="frontend\ui\directdevice\directdevice.cc" />
+    <ClCompile Include="frontend\ui\platform\directdevice\directdevice.cc" />
     <ClCompile Include="winmain\winmain.cc" />
     <ClCompile Include="backend\jsonparser\jsonparser.cc" />
     <ClCompile Include="backend\httprequest\httprequest.cc" />
@@ -179,6 +181,8 @@
     <ClInclude Include="backend\api\api.hpp" />
     <ClInclude Include="backend\api\structs\forecast.hpp" />
     <ClInclude Include="backend\api\structs\weather.hpp" />
+    <ClInclude Include="frontend\ui\extern\fonts\fonts.hpp" />
+    <ClInclude Include="frontend\ui\extern\images\images.hpp" />
     <ClInclude Include="frontend\ui\imgui\imconfig.h" />
     <ClInclude Include="frontend\ui\imgui\imgui.h" />
     <ClInclude Include="frontend\ui\imgui\imgui_impl_dx11.h" />
@@ -189,9 +193,9 @@
     <ClInclude Include="frontend\ui\imgui\imstb_truetype.h" />
     <ClInclude Include="backend\jsonparser\jsonparser.hpp" />
     <ClInclude Include="backend\httprequest\httprequest.hpp" />
-    <ClInclude Include="frontend\ui\directdevice\directdevice.hpp" />
-    <ClInclude Include="frontend\ui\wininfo\wininfo.hpp" />
-    <ClInclude Include="frontend\ui\wndproc\wndproc.hpp" />
+    <ClInclude Include="frontend\ui\platform\directdevice\directdevice.hpp" />
+    <ClInclude Include="frontend\ui\platform\wininfo\wininfo.hpp" />
+    <ClInclude Include="frontend\ui\platform\wndproc\wndproc.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

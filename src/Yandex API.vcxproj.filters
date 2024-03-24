@@ -48,7 +48,13 @@
     <ClCompile Include="winmain\winmain.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="frontend\ui\directdevice\directdevice.cc">
+    <ClCompile Include="frontend\ui\platform\directdevice\directdevice.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ui\extern\fonts\fonts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frontend\ui\extern\images\images.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,13 +104,19 @@
     <ClInclude Include="frontend\ui\imgui\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="frontend\ui\directdevice\directdevice.hpp">
+    <ClInclude Include="frontend\ui\platform\directdevice\directdevice.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="frontend\ui\wndproc\wndproc.hpp">
+    <ClInclude Include="frontend\ui\platform\wndproc\wndproc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="frontend\ui\wininfo\wininfo.hpp">
+    <ClInclude Include="frontend\ui\platform\wininfo\wininfo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ui\extern\fonts\fonts.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frontend\ui\extern\images\images.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
