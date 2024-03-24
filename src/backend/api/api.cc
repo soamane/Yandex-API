@@ -1,10 +1,8 @@
 #include "api.hpp"
-
 #include "../jsonparser/jsonparser.hpp"
 #include "../httprequest/httprequest.hpp"
-
 #include <curl/curl.h>
-#include <format>
+#include <sstream>
 
 YandexAPI::YandexAPI(std::string_view key) : apiKey(key) { }
 
@@ -19,8 +17,10 @@ const std::vector<Forecast> YandexAPI::GetForecast(double latitude, double longi
 }
 
 const std::string YandexAPI::RequestGetWeather(double latitude, double longitude) {
-    const std::string coords = ConvertCoordToURL(latitude, longitude);
-    const std::string url = std::format("{}{}", factWeatherUrl, coords);
+    std::ostringstream urlStream;
+    urlStream << factWeatherUrl << ConvertCoordToURL(latitude, longitude);
+
+    const std::string url = urlStream.str();
 
     const std::string verifyHeader = GetVerifyHeader();
     const curl_slist* headers = HttpRequest::AddHeaders({ verifyHeader });
@@ -29,8 +29,10 @@ const std::string YandexAPI::RequestGetWeather(double latitude, double longitude
 }
 
 const std::string YandexAPI::RequestGetForecast(double latitude, double longitude, unsigned int limit) {
-    const std::string coords = ConvertCoordToURL(latitude, longitude);
-    const std::string url = std::format("{}{}&limit={}&hours=false&extra=false", forecastWeatherUrl, coords, limit);
+    std::ostringstream urlStream;
+    urlStream << forecastWeatherUrl << ConvertCoordToURL(latitude, longitude) << "&limit=" << limit << "&hours=false&extra=false";
+
+    const std::string url = urlStream.str();
 
     const std::string verifyHeader = GetVerifyHeader();
     const curl_slist* headers = HttpRequest::AddHeaders({ verifyHeader });
@@ -39,9 +41,12 @@ const std::string YandexAPI::RequestGetForecast(double latitude, double longitud
 }
 
 const std::string YandexAPI::GetVerifyHeader() {
-    return std::format("{}{}", apiHeader, apiKey);
+    return std::string(apiHeader) + std::string(apiKey);
 }
 
 const std::string YandexAPI::ConvertCoordToURL(double latitude, double longitude) {
-    return std::format("lat={}&lon={}", latitude, longitude);
+    std::ostringstream coordStream;
+    coordStream << "lat=" << latitude << "&lon=" << longitude;
+
+    return coordStream.str();
 }

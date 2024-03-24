@@ -11,6 +11,7 @@
 class Fonts
 {
 public:
+	void InitSourceFonts();
 	void AddFontFromFile(const std::string& path, const std::string& name, std::size_t size);
 	void AddFontFromMemory(std::vector<unsigned char>& data, const std::string& name, std::size_t size);
 

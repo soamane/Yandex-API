@@ -47,14 +47,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ImGui_ImplDX11_Init(DirectDevice::pDevice, DirectDevice::pContext);
 
     Fonts fonts;
-    {
-        fonts.AddFontFromFile("C:\\Users\\admin\\Desktop\\nunito.ttf", "nunito", 14);
-    }
+    fonts.InitSourceFonts();
 
     Images images;
-    {
-        images.AddImageFromFile("C:\\Users\\admin\\Desktop\\bkn.png", "bkn");
-    }
+    images.InitSourceIcons();
 
     bool done = false;
     while (!done) {
@@ -78,7 +74,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             const ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
             ImGui::BeginChild("##header", headerSize, true);
             {
+                ImGui::PushFont(fonts.GetFont("regular-64"));
+                {
+                    std::string title = u8"В Москве +8°";
+                    ImVec2 titleSize = ImGui::CalcTextSize(title.c_str());
+                    ImVec2 titlePos = ImVec2{ (headerSize.x - titleSize.x) / 2.0f, (headerSize.y - titleSize.y) / 2.0f };
+                    ImGui::SetCursorPos(titlePos);
+                    ImGui::Text(title.c_str());          
+                }   
+                ImGui::PopFont();
 
+                ImGui::PushFont(fonts.GetFont("regular-26"));
+                {
+                    std::string description = u8"Сейчас небольшой дождь, ветер 3 м/с";
+                    ImVec2 descriptionSize = ImGui::CalcTextSize(description.c_str());
+                    ImVec2 descriptionPos = ImVec2{ (headerSize.x - descriptionSize.x) / 2.0f, (headerSize.y - descriptionSize.y) / 1.5f };
+
+                    ImGui::SetCursorPos(descriptionPos);
+                    ImGui::Text(description.c_str());
+                }
+                ImGui::PopFont();
             }
             ImGui::EndChild();
 
@@ -93,13 +108,68 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
                 for (int i = 0; i < childNum; ++i) {
                     const float offset = i * (childWidth + offsetForce);
+
                     ImGui::SetCursorPos(ImVec2(offset, 0.f));
+                    //ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.0f, 0.0f, 0.0f, 0.2f));
                     ImGui::BeginChild(("##day_frame_" + std::to_string(i)).c_str(), ImVec2(childWidth, footerSize.y), true);
                     {
-                        
+                        float offsetY = 10.0f; // Начальное смещение по Y
+
+                        // Текст с датой
+                        {
+                            std::string date = u8"00 марта";
+                            ImVec2 dateSize = ImGui::CalcTextSize(date.c_str());
+                            ImVec2 datePos = ImVec2{ (childWidth - dateSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(datePos);
+                            ImGui::TextColored(ImVec4{ 0.0f, 0.0f, 0.f, 0.3f }, u8"%d марта", i + 20);
+                            offsetY += dateSize.y + 5.0f; // Обновляем смещение по Y
+                        }
+
+                        // Текст с дневной температурой
+                        {
+                            std::string dayTemp = u8"00° днём";
+                            ImVec2 dayTempSize = ImGui::CalcTextSize(dayTemp.c_str());
+                            ImVec2 dayTempPos = ImVec2{ (childWidth - dayTempSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(dayTempPos);
+                            ImGui::Text(u8"+8° днём");
+                            offsetY += dayTempSize.y + 5.0f; // Обновляем смещение по Y
+                        }
+
+                        // Текст с ночной температурой
+                        {
+                            std::string nightTemp = u8"00° ночью";
+                            ImVec2 nightTempSize = ImGui::CalcTextSize(nightTemp.c_str());
+                            ImVec2 nightTempPos = ImVec2{ (childWidth - nightTempSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(nightTempPos);
+                            ImGui::TextColored(ImVec4{ 0.0f, 0.0f, 0.f, 0.3f }, u8"-3° ночью");
+                            offsetY += nightTempSize.y + 5.0f; // Обновляем смещение по Y
+                        }
+
+                        // Иконка
+                        auto icon = images.GetImage("vlka");
+                        if (icon != nullptr) {
+                            ImVec2 iconSize = ImVec2{ 32, 32 };
+                            ImVec2 iconPos = ImVec2{ (childWidth - iconSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(iconPos);
+                            ImGui::Image(icon, iconSize);
+                            offsetY += iconSize.y + 5.0f; // Обновляем смещение по Y
+                        }
+
+                        // Условие
+                        {
+                            std::string condition = u8"Пасмурно";
+                            ImVec2 conditionSize = ImGui::CalcTextSize(condition.c_str());
+                            ImVec2 conditionPos = ImVec2{ (childWidth - conditionSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(conditionPos);
+                            ImGui::TextColored(ImVec4{ 0.0f, 0.0f, 0.f, 0.3f }, condition.c_str());
+                            offsetY += conditionSize.y + 5.0f; // Обновляем смещение по Y
+                        }
                     }
                     ImGui::EndChild();
+
+                    //ImGui::PopStyleColor();
                 }
+
             }
             ImGui::EndChild();
         }
