@@ -1,8 +1,19 @@
 #include "fonts.hpp"
 
-void Fonts::AddFontFromFile(const std::string& path, const std::string& name, std::size_t size) { 
+#include <windows.h>
+
+void Fonts::InitSourceFonts() {
+    for (std::size_t size = 14; size <= 64; size += 2) {
+        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Regular.ttf", "regular-" + std::to_string(size), size);
+        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Medium.ttf", "medium-" + std::to_string(size), size);
+        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Thin.ttf", "thin-" + std::to_string(size), size);
+        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Light.ttf", "light-" + std::to_string(size), size);
+    }
+}
+
+void Fonts::AddFontFromFile(const std::string& path, const std::string& name, std::size_t size) {
     ImGuiIO& io = ImGui::GetIO();
-    ImFont* font = io.Fonts->AddFontFromFileTTF(path.c_str(), size);
+    ImFont* font = io.Fonts->AddFontFromFileTTF(path.c_str(), size, nullptr, io.Fonts->GetGlyphRangesCyrillic());
     if (font) {
         this->fonts[name] = font;
     }
@@ -10,10 +21,10 @@ void Fonts::AddFontFromFile(const std::string& path, const std::string& name, st
 
 void Fonts::AddFontFromMemory(std::vector<unsigned char>& data, const std::string& name, std::size_t size) { 
     ImGuiIO& io = ImGui::GetIO();
-    ImFont* font = io.Fonts->AddFontFromMemoryTTF(data.data(), data.size(), size);
+    ImFont* font = io.Fonts->AddFontFromMemoryTTF(data.data(), data.size(), size, nullptr, io.Fonts->GetGlyphRangesCyrillic());
     if (font) {
         this->fonts[name] = font;
-    }
+    } 
 }
 
 ImFont* Fonts::GetFont(const std::string& name) {

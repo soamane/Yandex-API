@@ -1,5 +1,18 @@
 #include "images.hpp"
 
+#include <filesystem>
+
+void Images::InitSourceIcons() {
+    std::string folderPath = "C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\icons\\";
+    AddImageFromFile(folderPath + "logo.png", "logo");
+    for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
+        std::filesystem::path filePath = entry.path();
+        std::filesystem::path fileName = filePath.filename();
+        std::filesystem::path fullFilePath = filePath; 
+        AddImageFromFile(fullFilePath.string(), fileName.stem().string());
+    }
+}
+
 void Images::AddImageFromFile(const std::string& path, const std::string& name) {
     D3DX11_IMAGE_LOAD_INFO loadInfo;
     ID3DX11ThreadPump* threadPump{ nullptr };

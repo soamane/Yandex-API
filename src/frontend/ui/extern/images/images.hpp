@@ -14,6 +14,7 @@
 class Images
 {
 public:
+	void InitSourceIcons();
 	void AddImageFromFile(const std::string& path, const std::string& name);
 	void AddImageFromMemory(std::vector<unsigned char>& data, const std::string& name);
 
