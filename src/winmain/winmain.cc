@@ -1,8 +1,10 @@
-#include "../frontend/ui/wndproc/wndproc.hpp"
-#include "../frontend/ui/directdevice/directdevice.hpp"
-#include "../frontend/ui/wininfo/wininfo.hpp"
+#include "../frontend/ui/platform/wndproc/wndproc.hpp"
+#include "../frontend/ui/platform/directdevice/directdevice.hpp"
+#include "../frontend/ui/platform/wininfo/wininfo.hpp"
 
-// Function to handle resource cleanup
+#include "../frontend/ui/extern/fonts/fonts.hpp"
+#include "../frontend/ui/extern/images/images.hpp"
+
 void CleanupResources(HWND hWindow, WNDCLASSEXW& windowClass) {
     DirectDevice::CleanupDevice();
     DestroyWindow(hWindow);
@@ -44,6 +46,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ImGui_ImplWin32_Init(hwnd);
     ImGui_ImplDX11_Init(DirectDevice::pDevice, DirectDevice::pContext);
 
+    Fonts fonts;
+    {
+        fonts.AddFontFromFile("C:\\Users\\admin\\Desktop\\nunito.ttf", "nunito", 14);
+    }
+
+    Images images;
+    {
+        images.AddImageFromFile("C:\\Users\\admin\\Desktop\\bkn.png", "bkn");
+    }
+
     bool done = false;
     while (!done) {
 
@@ -63,27 +75,28 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ImGui::SetNextWindowSize(WinInfo::size, ImGuiCond_FirstUseEver);
         ImGui::Begin(WinInfo::name.c_str(), &WinInfo::isOpen, WinInfo::flags);
         {
-            ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
+            const ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
             ImGui::BeginChild("##header", headerSize, true);
             {
 
             }
             ImGui::EndChild();
 
-            ImVec2 footerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.35f };
+            const ImVec2 footerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.35f };
             ImGui::SetCursorPos(ImVec2{ 0.f, headerSize.y + 1 });
             ImGui::BeginChild("##footer", footerSize, true);
             {
                 const int childNum = 7;
+                const int offsetNum = childNum - 1;
                 const float offsetForce = 7.0f;
-                const float childWidth = (WinInfo::size.x - (childNum - 1) * offsetForce) / childNum;
+                const float childWidth = (WinInfo::size.x - offsetNum * offsetForce) / childNum;
 
                 for (int i = 0; i < childNum; ++i) {
                     const float offset = i * (childWidth + offsetForce);
                     ImGui::SetCursorPos(ImVec2(offset, 0.f));
                     ImGui::BeginChild(("##day_frame_" + std::to_string(i)).c_str(), ImVec2(childWidth, footerSize.y), true);
                     {
-
+                        
                     }
                     ImGui::EndChild();
                 }

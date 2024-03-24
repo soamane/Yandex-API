@@ -4,9 +4,9 @@
 
 #include <windows.h>
 
-#include "../imgui/imgui.h"
-#include "../imgui/imgui_impl_win32.h"
-#include "../imgui/imgui_impl_dx11.h"
+#include "../../imgui/imgui.h"
+#include "../../imgui/imgui_impl_win32.h"
+#include "../../imgui/imgui_impl_dx11.h"
 
 #ifndef WM_DPICHANGED
 #define WM_DPICHANGED 0x02E0 
