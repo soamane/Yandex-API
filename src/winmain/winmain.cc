@@ -32,7 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
         io.IniFilename = nullptr;
-    }    
+    }
 
     ImGui::StyleColorsLight();
 
@@ -46,7 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     bool done = false;
     while (!done) {
-        
+
         MSG msg;
         while (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE)) {
             TranslateMessage(&msg);
@@ -54,34 +54,46 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             if (msg.message == WM_QUIT) {
                 done = true;
             }
-        }         
+        }
 
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
+
+        ImGui::SetNextWindowSize(WinInfo::size, ImGuiCond_FirstUseEver);
+        ImGui::Begin(WinInfo::name.c_str(), &WinInfo::isOpen, WinInfo::flags);
         {
-            ImGui::SetNextWindowSize(WinInfo::size);
-            ImGui::Begin(WinInfo::name.c_str(), &WinInfo::isOpen, WinInfo::flags);
+            ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
+            ImGui::BeginChild("##header", headerSize, true);
             {
-                ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
-                ImGui::BeginChild("##header", headerSize, true);
-                {
 
-                }
-                ImGui::EndChild();
-
-                ImGui::SetCursorPos(ImVec2{ 0.f, headerSize.y + 1 });
-                ImGui::BeginChild("##footer", ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.35f }, true);
-                {
-
-                }
-                ImGui::EndChild();
             }
-            ImGui::End();
+            ImGui::EndChild();
+
+            ImVec2 footerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.35f };
+            ImGui::SetCursorPos(ImVec2{ 0.f, headerSize.y + 1 });
+            ImGui::BeginChild("##footer", footerSize, true);
+            {
+                const int childNum = 7;
+                const float offsetForce = 7.0f;
+                const float childWidth = (WinInfo::size.x - (childNum - 1) * offsetForce) / childNum;
+
+                for (int i = 0; i < childNum; ++i) {
+                    const float offset = i * (childWidth + offsetForce);
+                    ImGui::SetCursorPos(ImVec2(offset, 0.f));
+                    ImGui::BeginChild(("##day_frame_" + std::to_string(i)).c_str(), ImVec2(childWidth, footerSize.y), true);
+                    {
+
+                    }
+                    ImGui::EndChild();
+                }
+            }
+            ImGui::EndChild();
         }
+        ImGui::End();
         ImGui::EndFrame();
         ImGui::Render();
-       
+
         DirectDevice::pContext->OMSetRenderTargets(1, &DirectDevice::pTargetView, nullptr);
         ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
