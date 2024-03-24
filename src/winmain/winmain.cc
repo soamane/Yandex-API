@@ -38,7 +38,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-    
+        style.WindowPadding = ImVec2{ 0.0f, 0.0f };
     }
 
     ImGui_ImplWin32_Init(hwnd);
@@ -63,7 +63,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             ImGui::SetNextWindowSize(WinInfo::size);
             ImGui::Begin(WinInfo::name.c_str(), &WinInfo::isOpen, WinInfo::flags);
             {
+                ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
+                ImGui::BeginChild("##header", headerSize, true);
+                {
 
+                }
+                ImGui::EndChild();
+
+                ImGui::SetCursorPos(ImVec2{ 0.f, headerSize.y + 1 });
+                ImGui::BeginChild("##footer", ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.35f }, true);
+                {
+
+                }
+                ImGui::EndChild();
             }
             ImGui::End();
         }
