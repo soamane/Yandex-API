@@ -190,6 +190,7 @@
     <ClInclude Include="backend\jsonparser\jsonparser.hpp" />
     <ClInclude Include="backend\httprequest\httprequest.hpp" />
     <ClInclude Include="frontend\ui\directdevice\directdevice.hpp" />
+    <ClInclude Include="frontend\ui\wininfo\wininfo.hpp" />
     <ClInclude Include="frontend\ui\wndproc\wndproc.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

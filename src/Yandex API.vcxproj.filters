@@ -104,5 +104,8 @@
     <ClInclude Include="frontend\ui\wndproc\wndproc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="frontend\ui\wininfo\wininfo.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
