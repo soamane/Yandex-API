@@ -10,7 +10,7 @@ struct WinInfo
 {
 	static inline bool isOpen = true;
 	static const inline std::string name = "##main";
-	static const inline ImVec2 size = { 600.f, 450.f };
+	static const inline ImVec2 size = { 700.f, 500.f };
 	static const inline ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar |
 		ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse;
 };
