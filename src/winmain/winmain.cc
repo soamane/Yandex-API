@@ -45,7 +45,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-        style.WindowPadding = ImVec2{ 0.0f, 0.0f };
+        style.WindowPadding = ImVec2(0, 0);
+        style.FramePadding = ImVec2(0, 0);
+        style.ItemSpacing = ImVec2(0, 0);
+        style.ItemInnerSpacing = ImVec2(0, 0);
+        style.TouchExtraPadding = ImVec2(0, 0);
+        style.IndentSpacing = 0;
+        style.ScrollbarSize = 0;
+        style.GrabMinSize = 0;
+        style.FrameBorderSize = 0.f;
     }
 
     ImGui_ImplWin32_Init(hwnd);
@@ -58,8 +66,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     images.InitSourceIcons();
 
     YandexAPI api = YandexAPI("192ae0ad-3a7e-4b1d-891b-fa7ce08c43aa");
-    auto fact = api.GetWeather(57.0531, 37.6173);
-    auto forecast = api.GetForecast(55.7558, 37.6173, 7);
+    auto fact = api.GetWeather(56.8597, 35.9119);
+    auto forecast = api.GetForecast(56.8597, 35.9119, 7);
 
     bool done = false;
     while (!done) {
@@ -82,14 +90,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         {
             const ImVec2 headerSize = ImVec2{ WinInfo::size.x, WinInfo::size.y * 0.65f };
             ImGui::BeginChild("##header", headerSize, true);
-            {
+            {      
+                fact.daytime == "n" ? ImGui::Image(images.GetImage("n_bg"), headerSize) : ImGui::Image(images.GetImage("d_bg"), headerSize);
+
                 ImGui::PushFont(fonts.GetFont("regular-64"));
                 {
-                    std::string title = "Moscow " + std::to_string(fact.temp) + u8"°";
+                    std::string title = "Tver " + std::to_string(fact.temp) + u8"°";
                     ImVec2 titleSize = ImGui::CalcTextSize(title.c_str());
                     ImVec2 titlePos = ImVec2{ (headerSize.x - titleSize.x) / 2.0f, (headerSize.y - titleSize.y) / 2.0f };
                     ImGui::SetCursorPos(titlePos);
-                    ImGui::Text(title.c_str());          
+                    ImGui::TextColored(ImVec4{ 1.0f, 1.0f, 1.0f, 1.0f }, title.c_str());
                 }   
                 ImGui::PopFont();
 
@@ -98,12 +108,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     std::ostringstream stream;
                     stream.precision(1);
                     stream << std::fixed << fact.wind_speed; 
-                    std::string description = "Now " + fact.condition + " " + stream.str() + " m/s";
+
+                    std::string description = "Now " + fact.condition + ", wind " + stream.str() + " m/s";
                     ImVec2 descriptionSize = ImGui::CalcTextSize(description.c_str());
                     ImVec2 descriptionPos = ImVec2{ (headerSize.x - descriptionSize.x) / 2.0f, (headerSize.y - descriptionSize.y) / 1.5f };
 
                     ImGui::SetCursorPos(descriptionPos);
-                    ImGui::TextColored(ImVec4{0.0f, 0.0f, 0.0f, 0.5f},description.c_str());
+                    ImGui::TextColored(ImVec4{ 1.0f, 1.0f, 1.0f, 0.7f }, description.c_str());
                 }
                 ImGui::PopFont();
             }
@@ -145,6 +156,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                             ImGui::SetCursorPos(dayTempPos);
                             ImGui::Text(dayTemp.c_str());
                             offsetY += dayTempSize.y + 5.0f;
+                        }
+
+                        std::string eveningTemp = std::to_string(forecast[i].evening.temp) + u8"° on evening";
+                        {
+                            ImVec2 eveningTempSize = ImGui::CalcTextSize(eveningTemp.c_str());
+                            ImVec2 eveningTempPos = ImVec2{ (childWidth - eveningTempSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(eveningTempPos);
+                            ImGui::TextColored(ImVec4{ 0.0f, 0.0f, 0.f, 0.3f }, eveningTemp.c_str());
+                            offsetY += eveningTempSize.y + 5.0f;
                         }
 
                         std::string nightTemp = std::to_string(forecast[i].night.temp) + u8"° on night";

@@ -4,7 +4,8 @@
 
 void Images::InitSourceIcons() {
     std::string folderPath = "C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\icons\\";
-    AddImageFromFile(folderPath + "logo.png", "logo");
+    AddImageFromFile(folderPath + "n_bg.png", "n_bg");
+    AddImageFromFile(folderPath + "d_bg.png", "d_bg");
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
         std::filesystem::path filePath = entry.path();
         std::filesystem::path fileName = filePath.filename();
