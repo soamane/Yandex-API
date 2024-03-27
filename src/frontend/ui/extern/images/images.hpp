@@ -11,16 +11,24 @@
 #include "../../imgui/imgui.h"
 #include "../../platform/directdevice/directdevice.hpp"
 
+// Class to manage images in ImGui
 class Images
 {
 public:
-	void InitSourceIcons();
-	void AddImageFromFile(const std::string& path, const std::string& name);
-	void AddImageFromMemory(std::vector<unsigned char>& data, const std::string& name);
+    // Initialize source icons
+    void InitSourceIcons();
 
-	ID3D11ShaderResourceView* GetImage(const std::string& image);
+    // Add image from file
+    void AddImageFromFile(const std::string& path, const std::string& name);
+
+    // Add image from memory
+    void AddImageFromMemory(std::vector<unsigned char>& data, const std::string& name);
+
+    // Get image by name
+    ID3D11ShaderResourceView* GetImage(const std::string& image);
+
 private:
-	std::map<std::string, ID3D11ShaderResourceView*> images;
+    std::map<std::string, ID3D11ShaderResourceView*> images; // Map to store loaded images
 };
 
 #endif // !IMAGES_HPP

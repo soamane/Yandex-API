@@ -8,16 +8,24 @@
 
 #include "../../imgui/imgui.h"
 
+// Class to manage fonts in ImGui
 class Fonts
 {
 public:
-	void InitSourceFonts();
-	void AddFontFromFile(const std::string& path, const std::string& name, std::size_t size);
-	void AddFontFromMemory(std::vector<unsigned char>& data, const std::string& name, std::size_t size);
+    // Initialize source fonts
+    void InitSourceFonts();
 
-	ImFont* GetFont(const std::string& name);
+    // Add font from file
+    void AddFontFromFile(const std::string& path, const std::string& name, std::size_t size);
+
+    // Add font from memory
+    void AddFontFromMemory(std::vector<unsigned char>& data, const std::string& name, std::size_t size);
+
+    // Get font by name
+    ImFont* GetFont(const std::string& name);
+
 private:
-	std::map<std::string, ImFont*> fonts;
+    std::map<std::string, ImFont*> fonts; // Map to store loaded fonts
 };
 
 #endif // !FONTS_HPP

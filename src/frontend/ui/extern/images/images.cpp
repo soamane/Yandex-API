@@ -3,7 +3,7 @@
 #include <filesystem>
 
 void Images::InitSourceIcons() {
-    std::string folderPath = "C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\icons\\";
+    std::string folderPath = "icons\\";
     AddImageFromFile(folderPath + "n_bg.png", "n_bg");
     AddImageFromFile(folderPath + "d_bg.png", "d_bg");
     for (const auto& entry : std::filesystem::directory_iterator(folderPath)) {
