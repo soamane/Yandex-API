@@ -7,7 +7,11 @@
 class Window
 {
 public:
+
+	// Initialize the window
 	void Init(WNDCLASSEXW& wc, HWND& hwnd);
+
+	// Clean up window resources
 	void CleanupResources(HWND hWindow, WNDCLASSEXW& windowClass);
 private:
 
