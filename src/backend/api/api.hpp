@@ -25,7 +25,7 @@ public:
 		Accepts latitude and longitude coordinates as arguments, along with the number of days for forecasting.
 		Return value: an array of forecast data per day.
 	*/
-	const std::vector<Forecast> GetForecast(double latitude, double longitude, unsigned int limit);
+	const std::vector<Forecast> GetForecast(double latitude, double longitude, unsigned int limit = 7);
 
 private:
 
