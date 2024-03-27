@@ -45,15 +45,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     ImGuiStyle& style = ImGui::GetStyle();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-        style.WindowPadding = ImVec2(0, 0);
-        style.FramePadding = ImVec2(0, 0);
-        style.ItemSpacing = ImVec2(0, 0);
-        style.ItemInnerSpacing = ImVec2(0, 0);
-        style.TouchExtraPadding = ImVec2(0, 0);
+        style.WindowPadding = ImVec2{ 0.0f, 0.0f };
+        style.FramePadding = ImVec2{ 0.0f, 0.0f };
+        style.ItemSpacing = ImVec2{ 0.0f, 0.0f };
+        style.ItemInnerSpacing = ImVec2{ 0.0f,0.0f };
+        style.TouchExtraPadding = ImVec2{ 0.0f, 0.0f };
         style.IndentSpacing = 0;
         style.ScrollbarSize = 0;
         style.GrabMinSize = 0;
         style.FrameBorderSize = 0.f;
+        style.FrameRounding = 7.f;
     }
 
     ImGui_ImplWin32_Init(hwnd);
@@ -117,6 +118,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     ImGui::TextColored(ImVec4{ 1.0f, 1.0f, 1.0f, 0.7f }, description.c_str());
                 }
                 ImGui::PopFont();
+
+                ImGui::SetCursorPos(ImVec2{ WinInfo::size.x - 25.f, 10.f });
+                if (ImGui::Button("##close_button", ImVec2{ 15, 15 })) {
+                    done = true;
+                }
             }
             ImGui::EndChild();
 
