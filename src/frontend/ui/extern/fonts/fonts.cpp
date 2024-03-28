@@ -4,10 +4,10 @@
 
 void Fonts::InitSourceFonts() {
     for (std::size_t size = 14; size <= 64; size += 2) {
-        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Regular.ttf", "regular-" + std::to_string(size), size);
-        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Medium.ttf", "medium-" + std::to_string(size), size);
-        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Thin.ttf", "thin-" + std::to_string(size), size);
-        AddFontFromFile("C:\\Users\\admin\\Desktop\\Yandex-API\\Assets\\fonts\\YandexSansText-Light.ttf", "light-" + std::to_string(size), size);
+        AddFontFromFile("fonts\\YandexSansText-Regular.ttf", "regular-" + std::to_string(size), size);
+        AddFontFromFile("fonts\\YandexSansText-Medium.ttf", "medium-" + std::to_string(size), size);
+        AddFontFromFile("fonts\\YandexSansText-Thin.ttf", "thin-" + std::to_string(size), size);
+        AddFontFromFile("fonts\\YandexSansText-Light.ttf", "light-" + std::to_string(size), size);
     }
 }
 

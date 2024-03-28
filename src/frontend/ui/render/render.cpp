@@ -34,11 +34,11 @@ void Render::Init(Images& images, Fonts& fonts, const Weather& fact, const std::
 
                 ImGui::PushFont(fonts.GetFont("regular-64"));
                 {
-                    std::string title = "Tver " + std::to_string(fact.temp) + u8"°";
-                    ImVec2 titleSize = ImGui::CalcTextSize(title.c_str());
-                    ImVec2 titlePos = ImVec2{ (headerSize.x - titleSize.x) / 2.0f, (headerSize.y - titleSize.y) / 2.0f };
-                    ImGui::SetCursorPos(titlePos);
-                    ImGui::TextColored(ImVec4{ 1.0f, 1.0f, 1.0f, 1.0f }, title.c_str());
+                    std::string currentTemp = std::to_string(fact.temp) + u8"°";
+                    ImVec2 currentTempSize = ImGui::CalcTextSize(currentTemp.c_str());
+                    ImVec2 currentTempPos = ImVec2{ (headerSize.x - currentTempSize.x) / 2.0f, (headerSize.y - currentTempSize.y) / 2.0f };
+                    ImGui::SetCursorPos(currentTempPos);
+                    ImGui::TextColored(ImVec4{ 1.0f, 1.0f, 1.0f, 1.0f }, currentTemp.c_str());
                 }
                 ImGui::PopFont();
 
@@ -120,8 +120,8 @@ void Render::Init(Images& images, Fonts& fonts, const Weather& fact, const std::
                             offsetY += nightTempSize.y + 5.0f;
                         }
 
-                        auto icon = images.GetImage(forecast[i].day.icon.c_str());
-                        {
+                        ID3D11ShaderResourceView* icon = images.GetImage(forecast[i].day.icon.c_str());
+                        {                           
                             ImVec2 iconSize = ImVec2{ 32, 32 };
                             ImVec2 iconPos = ImVec2{ (childWidth - iconSize.x) / 2.0f, offsetY };
                             ImGui::SetCursorPos(iconPos);
