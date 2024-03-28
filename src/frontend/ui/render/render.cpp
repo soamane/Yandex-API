@@ -34,7 +34,7 @@ void Render::Init(Images& images, Fonts& fonts, const Weather& fact, const std::
 
                 ImGui::PushFont(fonts.GetFont("regular-64"));
                 {
-                    std::string currentTemp = std::to_string(fact.temp) + u8"°";
+                    std::string currentTemp = "Now " + std::to_string(fact.temp) + u8"°";
                     ImVec2 currentTempSize = ImGui::CalcTextSize(currentTemp.c_str());
                     ImVec2 currentTempPos = ImVec2{ (headerSize.x - currentTempSize.x) / 2.0f, (headerSize.y - currentTempSize.y) / 2.0f };
                     ImGui::SetCursorPos(currentTempPos);
@@ -48,7 +48,7 @@ void Render::Init(Images& images, Fonts& fonts, const Weather& fact, const std::
                     stream.precision(1);
                     stream << std::fixed << fact.wind_speed;
 
-                    std::string description = "Now " + fact.condition + ", wind " + stream.str() + " m/s";
+                    std::string description = fact.condition + ", wind " + stream.str() + " m/s";
                     ImVec2 descriptionSize = ImGui::CalcTextSize(description.c_str());
                     ImVec2 descriptionPos = ImVec2{ (headerSize.x - descriptionSize.x) / 2.0f, (headerSize.y - descriptionSize.y) / 1.5f };
 
