@@ -91,7 +91,7 @@ void Render::Init(Images& images, Fonts& fonts, const Weather& fact, const std::
                             ImGui::SetCursorPos(datePos);
                             ImGui::TextColored(ImVec4{ 0.0f, 0.0f, 0.f, 0.3f }, forecast[i].date.c_str(), i + 20);
                             offsetY += dateSize.y + 5.0f;
-                        }
+                        }                      
 
                         std::string dayTemp = std::to_string(forecast[i].day.temp) + u8"° on day";
                         {
@@ -100,6 +100,15 @@ void Render::Init(Images& images, Fonts& fonts, const Weather& fact, const std::
                             ImGui::SetCursorPos(dayTempPos);
                             ImGui::Text(dayTemp.c_str());
                             offsetY += dayTempSize.y + 5.0f;
+                        }
+
+                        std::string morningTemp = std::to_string(forecast[i].morning.temp) + u8"° on morning";
+                        {
+                            ImVec2 morningTempSize = ImGui::CalcTextSize(morningTemp.c_str());
+                            ImVec2 morningTempPos = ImVec2{ (childWidth - morningTempSize.x) / 2.0f, offsetY };
+                            ImGui::SetCursorPos(morningTempPos);
+                            ImGui::TextColored(ImVec4{ 0.0f, 0.0f, 0.f, 0.3f }, morningTemp.c_str());
+                            offsetY += morningTempSize.y + 5.0f;
                         }
 
                         std::string eveningTemp = std::to_string(forecast[i].evening.temp) + u8"° on evening";
