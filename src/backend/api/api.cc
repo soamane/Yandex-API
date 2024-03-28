@@ -11,7 +11,7 @@ const Weather YandexAPI::GetWeather(double latitude, double longitude) {
     return Parser::ParseWeatherData(data);
 }
 
-const std::vector<Forecast> YandexAPI::GetForecast(double latitude, double longitude, unsigned int limit = 7) {
+const std::vector<Forecast> YandexAPI::GetForecast(double latitude, double longitude, unsigned int limit) {
     const std::string data = RequestGetForecast(latitude, longitude, limit);
     return Parser::ParseForecastData(data);
 }

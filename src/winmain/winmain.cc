@@ -5,16 +5,39 @@
 
 // Entry point of the application
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    Window window;
+
+    // Parse CmdLine
+    std::string cmdLine = std::string(lpCmdLine);
+
+    size_t pos1 = cmdLine.find_first_of(' ');
+    if (pos1 == std::string::npos) {
+        MessageBoxA(nullptr, "Usage: <token> <latitude> <longitude>", nullptr, MB_ICONERROR | MB_OK);
+        return -1;
+    }
+
+    std::string token = cmdLine.substr(0, pos1);
+    size_t pos2 = cmdLine.find_first_of(' ', pos1 + 1);
+    if (pos2 == std::string::npos) {
+        MessageBoxA(0, "Usage: <token> <latitude> <longitude>", nullptr, MB_ICONERROR | MB_OK);
+        return -1;
+    }
+
+    std::string lat = cmdLine.substr(pos1 + 1, pos2 - pos1 - 1);
+    std::string lon = cmdLine.substr(pos2 + 1);
+    if (lat.empty() || lon.empty()) {
+        MessageBoxA(nullptr, "Usage: <token> <latitude> <longitude>", nullptr, MB_ICONERROR | MB_OK);
+        return -1;
+    }
+     
+    // Initializing the window
     WNDCLASSEXW wc = { };
     HWND hwnd = nullptr;
 
-    // Initializing the window
-    window.Init(wc, hwnd);
+    Window::Init(wc, hwnd);
 
     // Creating the Direct3D device
     if (!DirectDevice::CreateDevice(hwnd)) {
-        window.CleanupResources(hwnd, wc);
+        Window::CleanupResources(hwnd, wc);
         return 1;
     }
 
@@ -59,9 +82,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ImGui_ImplDX11_Init(DirectDevice::pDevice, DirectDevice::pContext);
     {
         // Initializing YandexAPI and retrieving weather data
-        YandexAPI api = YandexAPI("192ae0ad-3a7e-4b1d-891b-fa7ce08c43aa");
-        const Weather fact = api.GetWeather(56.8597, 35.9119);
-        const std::vector<Forecast> forecast = api.GetForecast(56.8597, 35.9119);
+        YandexAPI api = YandexAPI(token);
+        const Weather fact = api.GetWeather(std::stoi(lat), std::stoi(lon));
+        const std::vector<Forecast> forecast = api.GetForecast(std::stoi(lat), std::stoi(lon));
 
         // Initializing rendering
         Render::Init(images, fonts, fact, forecast);
@@ -73,6 +96,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ImGui::DestroyContext();
 
     // Cleaning up resources
-    window.CleanupResources(hwnd, wc);
+    Window::CleanupResources(hwnd, wc);
     return 0;
 }
