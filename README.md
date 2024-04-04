@@ -48,7 +48,7 @@ an interface for working with it has been developed. It utilizes the capability 
 + The structure of weather conditions consists of:
   - **Weather** data structure (weather conditions at any given moment)
   - **Forecast** data structure, which contains four Weather objects for each time period of the day: *morning, day, evening, night, and the date for each forecast day*.
-+ Additionally, the project utilizes predefined enumerations from the API itself for certain weather condition indicators: Cloudiness, PrecType, PrecStrength
++ Additionally, the project utilizes predefined enumerations from the API itself for certain weather condition indicators: `Cloudiness`, `PrecType`, `PrecStrength`
   ```C++
     enum Cloudiness
     {
